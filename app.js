@@ -163,6 +163,7 @@ const LanguageContext = createContext();
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { lang, setLang, t } = useContext(LanguageContext);
 
     useEffect(() => {
@@ -180,7 +181,7 @@ const Header = () => {
                     <i className="fa-solid fa-building"></i> PREMIUM REGIONAL
                 </a>
                 
-                <nav className="nav-links">
+                <nav className={`nav-links ${isMenuOpen ? 'active-mobile' : ''}`}>
                     <div className="nav-item">
                         <a href="#" className="nav-link">{t.company}</a>
                         <div className="dropdown-menu">
@@ -227,7 +228,7 @@ const Header = () => {
                         <span className={lang === 'RU' ? 'active' : ''} onClick={() => setLang('RU')}>RU</span>
                         <span className={lang === 'EN' ? 'active' : ''} onClick={() => setLang('EN')}>EN</span>
                     </div>
-                    <i className="fa-solid fa-bars menu-toggle"></i>
+                    <i className={`fa-solid ${isMenuOpen ? 'fa-xmark' : 'fa-bars'} menu-toggle`} onClick={() => setIsMenuOpen(!isMenuOpen)}></i>
                 </div>
             </div>
         </header>
@@ -359,8 +360,8 @@ const CtaBanner = () => {
             <div className="container">
                 <h2 className="cta-title">{t.ctaTitle}</h2>
                 <p className="cta-subtitle">{t.ctaSub}</p>
-                <a href="tel:+994517111111" className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
-                    <i className="fa-solid fa-phone"></i> +994 51 711 11 11
+                <a href="tel:+994" className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
+                    <i className="fa-solid fa-phone"></i> +994
                 </a>
             </div>
         </section>
@@ -419,7 +420,7 @@ const Footer = () => {
                             </li>
                             <li>
                                 <i className="fa-solid fa-phone"></i>
-                                <span>+994 51 711 11 11</span>
+                                <span>+994</span>
                             </li>
                             <li>
                                 <i className="fa-solid fa-envelope"></i>

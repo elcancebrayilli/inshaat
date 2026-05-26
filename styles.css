@@ -533,6 +533,38 @@ ul {
 @media (max-width: 992px) {
     .nav-links {
         display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        border-top: 1px solid #eee;
+    }
+    
+    .nav-links.active-mobile {
+        display: flex;
+    }
+
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        border-top: none;
+        border-left: 2px solid var(--primary-color);
+        padding: 0 0 0 10px;
+        margin-top: 10px;
+        display: none;
+    }
+
+    .nav-item:hover .dropdown-menu,
+    .nav-item:active .dropdown-menu {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
     }
     
     .menu-toggle {
@@ -542,13 +574,29 @@ ul {
     .hero-title {
         font-size: 3rem;
     }
+
+    .portfolio-grid, .services-grid, .footer-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
+    .header-container {
+        padding: 0 15px;
+    }
+    
+    .logo-container {
+        font-size: 18px;
+    }
+
     .hero-title {
         font-size: 2.2rem;
     }
     
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
     .btn-outline {
         margin-left: 0;
         margin-top: 15px;
@@ -563,5 +611,31 @@ ul {
     
     .section-title {
         font-size: 2rem;
+    }
+
+    .services-section, .portfolio-section, .cta-section {
+        padding: 60px 0;
+    }
+
+    .portfolio-item {
+        height: 250px;
+    }
+    
+    .cta-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .logo-container {
+        font-size: 16px;
+    }
+
+    .portfolio-grid, .services-grid, .footer-grid {
+        grid-template-columns: 1fr;
     }
 }
