@@ -1,42 +1,785 @@
 <!DOCTYPE html>
 <html lang="az">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Regional İnşaat - Təmir, Tikinti, Dizayn</title>
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Premium Regional İnşaat - Peşəkar Təmir, Tikinti və Dizayn xidmətləri. Siz xəyal edin, biz gerçəkləşdirək.">
-    <meta name="keywords" content="Temir, Tikinti, Dizayn, Memarliq, Mebel, Perde, Elektrik, Hovuz, Premium Regional Inshaat">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
-
-    <!-- React and ReactDOM -->
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-    
-    <!-- Babel for JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Elcan İnşaat — Arxitektura, tikinti və interyer dizaynı şirkəti. Bakı, Azərbaycan.">
+  <title>Elcan İnşaat — Arxitektura & Tikinti</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="root"></div>
-    
-    <!-- Application Logic -->
-    <script type="text/babel" src="app.js" data-type="module"></script>
+
+  <!-- ══ HEADER ══════════════════════════════════ -->
+  <header class="header" id="header">
+    <div class="header-inner">
+
+      <a href="#" class="logo">
+        <svg width="34" height="34" viewBox="0 0 40 40" fill="none">
+          <!-- outer diamond -->
+          <path d="M20 1L39 20L20 39L1 20Z" fill="#CC2020"/>
+          <!-- top-right facet -->
+          <path d="M20 1L39 20L20 20Z" fill="#FF6666" opacity=".45"/>
+          <!-- bottom-right facet -->
+          <path d="M20 20L39 20L20 39Z" fill="#881111" opacity=".55"/>
+          <!-- inner diamond cut-out highlight -->
+          <path d="M20 10L29 20L20 30L11 20Z" fill="white" opacity=".12"/>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-main">Elcan</span>
+          <span class="logo-sub" data-translate="logo_sub">İnşaat</span>
+        </div>
+      </a>
+
+      <nav class="nav" id="nav">
+
+        <div class="nav-item has-dd">
+          <button class="nav-btn">
+            <span data-translate="nav_company">Şirkət</span>
+            <svg class="chev" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="dropdown">
+            <a href="#about" data-translate="nav_about">Haqqımızda</a>
+            <a href="#partners" data-translate="nav_partners">Tərəfdaşlar</a>
+          </div>
+        </div>
+
+        <div class="nav-item has-dd">
+          <button class="nav-btn">
+            <span data-translate="nav_portfolio">Portfolio</span>
+            <svg class="chev" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="dropdown">
+            <a href="#portfolio" data-filter-trigger="all" data-translate="nav_all_projects">Bütün layihələr</a>
+            <a href="#portfolio" data-filter-trigger="arch" data-translate="nav_arch">Arxitektura</a>
+            <a href="#portfolio" data-filter-trigger="interior" data-translate="nav_interior">İnteryer</a>
+            <a href="#portfolio" data-filter-trigger="construction" data-translate="nav_construction">Tikinti</a>
+          </div>
+        </div>
+
+        <div class="nav-item has-dd">
+          <button class="nav-btn">
+            <span data-translate="nav_services">Xidmətlərimiz</span>
+            <svg class="chev" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="dropdown">
+            <a href="#services" data-translate="nav_arch">Arxitektura</a>
+            <a href="#services" data-translate="nav_interior_design">İnteryer dizaynı</a>
+            <a href="#services" data-translate="nav_construction">Tikinti</a>
+            <a href="#services" data-translate="nav_landscape">Landşaft</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="#contact" class="nav-btn" data-translate="nav_cooperation">Əməkdaşlıq</a>
+        </div>
+
+        <div class="nav-item has-dd">
+          <button class="nav-btn">
+            <span data-translate="nav_media">Media</span>
+            <svg class="chev" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="dropdown">
+            <a href="#" data-translate="nav_news">Xəbərlər</a>
+            <a href="#" data-translate="nav_photos">Foto qalereya</a>
+            <a href="#" data-translate="nav_video">Video</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="#contact" class="nav-btn" data-translate="nav_contact">Əlaqə</a>
+        </div>
+
+      </nav>
+
+      <div class="header-actions">
+        <a href="tel:+994703052005" class="hdr-phone" aria-label="Zəng et">
+          <svg viewBox="0 0 20 20" fill="none"><path d="M4 2h4l2 4.5-2.5 2a12 12 0 005.5 5.5l2-2.5 4.5 2v4A1.5 1.5 0 0118 19C9 19 1 11 1 2A1.5 1.5 0 012.5.5h4L4 2z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </a>
+        <a href="https://wa.me/994703052005" class="hdr-wa" target="_blank" aria-label="WhatsApp">
+          <svg viewBox="0 0 20 20" fill="none"><path d="M10 1C5 1 1 5 1 10c0 1.6.4 3.2 1.2 4.6L1 19l4.6-1.2A9 9 0 1010 1z" stroke="currentColor" stroke-width="1.4"/><path d="M7 8c.4.9 1 1.8 1.8 2.6.8.8 1.7 1.4 2.6 1.8l1.2-1.2c.2-.2.4-.2.6-.1.7.3 1.5.5 2.3.5.3 0 .5.2.5.5V14c0 .3-.2.5-.5.5A8.5 8.5 0 015.5 6c0-.3.2-.5.5-.5H7.5c.3 0 .5.2.5.5 0 .8.2 1.6.5 2.3.1.2 0 .4-.1.6L7 8z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </a>
+        <div class="lang-sw">
+          <button class="lang active" data-lang="az">AZ</button>
+          <button class="lang" data-lang="ru">RU</button>
+          <button class="lang" data-lang="en">EN</button>
+        </div>
+        <button class="burger" id="burger" aria-label="Menyu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mob-overlay" id="mobOverlay">
+    <div class="mob-menu" id="mobMenu">
+      <a href="#" class="mob-logo">
+        <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+          <path d="M20 1L39 20L20 39L1 20Z" fill="#CC2020"/>
+          <path d="M20 1L39 20L20 20Z" fill="#FF6666" opacity=".45"/>
+          <path d="M20 20L39 20L20 39Z" fill="#881111" opacity=".55"/>
+          <path d="M20 10L29 20L20 30L11 20Z" fill="white" opacity=".12"/>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-main">Elcan</span>
+          <span class="logo-sub" data-translate="logo_sub">İnşaat</span>
+        </div>
+      </a>
+      <nav class="mob-nav">
+        <div class="mob-acc">
+          <button class="mob-acc-btn">
+            <span data-translate="nav_company">Şirkət</span>
+            <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="mob-acc-body">
+            <a href="#about" data-translate="nav_about">Haqqımızda</a>
+            <a href="#partners" data-translate="nav_partners">Tərəfdaşlar</a>
+          </div>
+        </div>
+        <div class="mob-acc">
+          <button class="mob-acc-btn">
+            <span data-translate="nav_portfolio">Portfolio</span>
+            <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="mob-acc-body">
+            <a href="#portfolio" data-filter-trigger="all" data-translate="nav_all_projects">Bütün layihələr</a>
+            <a href="#portfolio" data-filter-trigger="arch" data-translate="nav_arch">Arxitektura</a>
+            <a href="#portfolio" data-filter-trigger="interior" data-translate="nav_interior">İnteryer</a>
+          </div>
+        </div>
+        <div class="mob-acc">
+          <button class="mob-acc-btn">
+            <span data-translate="nav_services">Xidmətlərimiz</span>
+            <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="mob-acc-body">
+            <a href="#services" data-translate="nav_arch">Arxitektura</a>
+            <a href="#services" data-translate="nav_interior_design">İnteryer dizaynı</a>
+            <a href="#services" data-translate="nav_construction">Tikinti</a>
+          </div>
+        </div>
+        <a href="#contact" class="mob-link" data-translate="nav_cooperation">Əməkdaşlıq</a>
+        <a href="#" class="mob-link" data-translate="nav_media">Media</a>
+        <a href="#contact" class="mob-link" id="mobClose" data-translate="nav_contact">Əlaqə</a>
+      </nav>
+      <div class="mob-footer">
+        <a href="tel:+994703052005">+994 70 305 20 05</a>
+        <a href="mailto:elcancbrayilli2@gmail.com">elcancbrayilli2@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ HERO SLIDER ══════════════════════════════ -->
+  <section class="hero" id="hero">
+
+    <div class="slides" id="slides">
+      <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1920&q=90&auto=format&fit=crop')">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <p class="slide-tag" data-translate="slide1_tag">Arxitektura studiyası · Bakı, Azərbaycan</p>
+          <h1 data-translate="slide1_title">Siz arzulayın —<br>biz həyata<br><span class="red">keçirək</span></h1>
+          <p class="slide-sub" data-translate="slide1_sub">Peşəkar və beynəlxalq təcrübəmizlə həmişə xidmətinizdəyik. Siz xəyal edin, biz gerçəkləşdirək.</p>
+          <a href="#about" class="btn-red"><span data-translate="btn_about_company">Şirkət haqqında</span> <svg viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=90&auto=format&fit=crop')">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <p class="slide-tag" data-translate="slide2_tag">İnteryer dizaynı · 18 illik təcrübə</p>
+          <h1 data-translate="slide2_title">140+ layihə<br>uğurla həyata<br><span class="red">keçirildi</span></h1>
+          <p class="slide-sub" data-translate="slide2_sub">Hər bir layihəyə tam diqqət, peşəkar yanaşma və keyfiyyətli materiallar.</p>
+          <a href="#portfolio" class="btn-red"><span data-translate="btn_view_portfolio">Portfolioya bax</span> <svg viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=90&auto=format&fit=crop')">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <p class="slide-tag" data-translate="slide3_tag">Tikinti · Tam xidmət dövrü</p>
+          <h1 data-translate="slide3_title">İlk eskizdən<br>açarların<br><span class="red">təhvilinə qədər</span></h1>
+          <p class="slide-sub" data-translate="slide3_sub">Arxitektura, dizayn və tikinti — hamısı bir dam altında. Sizin üçün ən rahat həll.</p>
+          <a href="#contact" class="btn-red"><span data-translate="btn_submit_request">Müraciət edin</span> <svg viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-dots" id="sliderDots">
+      <button class="dot active" data-slide="0"></button>
+      <button class="dot" data-slide="1"></button>
+      <button class="dot" data-slide="2"></button>
+    </div>
+
+    <div class="slider-counter">
+      <span class="sc-cur" id="scCur">01</span>
+      <span class="sc-line"></span>
+      <span class="sc-tot">0<span id="scTot">3</span></span>
+    </div>
+
+    <button class="slider-arr slider-arr--prev" id="slidePrev">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="slider-arr slider-arr--next" id="slideNext">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+  </section>
+
+  <!-- ══ SERVICES ═════════════════════════════════ -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-top">
+        <div>
+          <p class="label" data-translate="nav_services">Xidmətlərimiz</p>
+          <h2 class="section-title" data-translate="services_title">Nə təklif edirik?</h2>
+        </div>
+        <a href="#portfolio" class="link-more"><span data-translate="filter_all">Hamısı</span> <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="services-grid">
+
+        <div class="svc-card">
+          <div class="svc-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 42V20L24 6l18 14v22M18 42V30h12v12"/></svg>
+          </div>
+          <h3 data-translate="nav_arch">Arxitektura</h3>
+          <p data-translate="srv_arch_desc">Konsepsiyadan tikintinin sonuna qədər — yaşayış və kommersiya binaları üçün peşəkar layihələndirmə.</p>
+          <a href="#contact" class="svc-link"><span data-translate="btn_details">Ətraflı</span> <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="6" width="36" height="36" rx="2"/><line x1="6" y1="18" x2="42" y2="18"/><line x1="18" y1="18" x2="18" y2="42"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>
+          </div>
+          <h3 data-translate="nav_interior_design">İnteryer Dizaynı</h3>
+          <p data-translate="srv_interior_desc">Nəfəs alan interyerlər. Materiallar, işıqlandırma, xüsusi mebel — vahid, atmosferi zəngin məkan.</p>
+          <a href="#contact" class="svc-link"><span data-translate="btn_details">Ətraflı</span> <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="20" width="40" height="24"/><path d="M4 20L24 4l20 16"/><line x1="20" y1="44" x2="20" y2="32"/><line x1="28" y1="44" x2="28" y2="32"/></svg>
+          </div>
+          <h3 data-translate="nav_construction">Tikinti</h3>
+          <p data-translate="srv_construction_desc">Tam tikinti idarəetməsi — materiallar nəzarəti, usta seçimi, layihə müddətlərinə riayət.</p>
+          <a href="#contact" class="svc-link"><span data-translate="btn_details">Ətraflı</span> <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="24" r="18"/><path d="M10 36c4-8 20-8 28 0M24 6v6M6 24h6M36 24h6"/></svg>
+          </div>
+          <h3 data-translate="nav_landscape">Landşaft Dizaynı</h3>
+          <p data-translate="srv_landscape_desc">Binanı əhatə edən mühit də önəmlidir. Bağ və landşaft layihələndirməsi — təbiətlə harmoniyada.</p>
+          <a href="#contact" class="svc-link"><span data-translate="btn_details">Ətraflı</span> <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ABOUT ═════════════════════════════════════ -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img">
+          <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=900&q=85&auto=format&fit=crop" alt="ELCAN INSHAAT Studio" loading="lazy">
+          <div class="about-img-badge">
+            <span class="badge-num">18+</span>
+            <span class="badge-txt" data-translate="experience_years">İllik təcrübə</span>
+          </div>
+        </div>
+        <div class="about-content">
+          <p class="label" data-translate="nav_about">Haqqımızda</p>
+          <h2 class="section-title" data-translate="about_title">Keyfiyyət və peşəkar yanaşma</h2>
+          <p class="about-text" data-translate="about_text1">ELCAN INSHAAT — Bakıda yerləşən arxitektura studiyasıdır. Biz arxitektura, tikinti və interyer dizaynı üzrə kompleks xidmət göstəririk. Hər bir layihə üçün tam yaradıcı və peşəkar diqqət.</p>
+          <p class="about-text" data-translate="about_text2">Biz eyni anda məhdud sayda müştəri ilə işləyirik — bu hər layihəyə tam diqqət yetirməyimizə imkan verir.</p>
+          <div class="about-facts">
+            <div class="fact">
+              <span class="fact-n" data-count="140">0</span><sup>+</sup>
+              <span data-translate="projects_label">Layihələr</span>
+            </div>
+            <div class="fact">
+              <span class="fact-n" data-count="18">0</span>
+              <span data-translate="experience_years">İllik təcrübə</span>
+            </div>
+            <div class="fact">
+              <span class="fact-n" data-count="12">0</span>
+              <span data-translate="awards_label">Mükafatlar</span>
+            </div>
+          </div>
+          <a href="#" id="aboutMoreBtn" class="btn-dark"><span data-translate="btn_about_company_more">Şirkət haqqında ətraflı</span> <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PORTFOLIO ════════════════════════════════ -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <div class="section-top">
+        <div>
+          <p class="label" data-translate="nav_portfolio">Portfolio</p>
+          <h2 class="section-title" data-translate="portfolio_title">Son layihələr</h2>
+        </div>
+        <div class="filter-tabs" id="filterTabs">
+          <button class="tab active" data-filter="all" data-translate="filter_all">Hamısı</button>
+          <button class="tab" data-filter="arch" data-translate="nav_arch">Arxitektura</button>
+          <button class="tab" data-filter="interior" data-translate="nav_interior">İnteryer</button>
+          <button class="tab" data-filter="construction" data-translate="nav_construction">Tikinti</button>
+        </div>
+      </div>
+
+      <div class="portfolio-grid" id="portfolioGrid">
+
+        <a href="#" class="pcard" data-cat="arch" data-project-id="casa_azur">
+          <div class="pcard-img">
+            <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=700&q=80&auto=format&fit=crop" alt="Casa Azur" loading="lazy">
+            <div class="pcard-overlay">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat" data-translate="nav_arch">Arxitektura</span>
+            <h3>Casa Azur</h3>
+            <p data-translate="project_casa_azur_info">Xüsusi Rezidensiya · Bakı · 2024</p>
+          </div>
+        </a>
+
+        <a href="#" class="pcard" data-cat="interior" data-project-id="meridian_penthouse">
+          <div class="pcard-img">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=700&q=80&auto=format&fit=crop" alt="Meridian Penthouse" loading="lazy">
+            <div class="pcard-overlay">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat" data-translate="nav_interior">İnteryer</span>
+            <h3>Meridian Penthouse</h3>
+            <p data-translate="project_meridian_info">Lüks Mənzil · Bakı · 2024</p>
+          </div>
+        </a>
+
+        <a href="#" class="pcard" data-cat="arch" data-project-id="villa_travertine">
+          <div class="pcard-img">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=700&q=80&auto=format&fit=crop" alt="Villa Travertine" loading="lazy">
+            <div class="pcard-overlay">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat" data-translate="nav_arch">Arxitektura</span>
+            <h3>Villa Travertine</h3>
+            <p data-translate="project_travertine_info">Xüsusi Villa · Gəncə · 2024</p>
+          </div>
+        </a>
+
+        <a href="#" class="pcard" data-cat="interior" data-project-id="stone_house">
+          <div class="pcard-img">
+            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=700&q=80&auto=format&fit=crop" alt="Stone House" loading="lazy">
+            <div class="pcard-overlay">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat" data-translate="nav_interior">İnteryer</span>
+            <h3>Stone House</h3>
+            <p data-translate="project_stone_house_info">Xüsusi Ev · Şəki · 2023</p>
+          </div>
+        </a>
+
+        <a href="#" class="pcard" data-cat="construction" data-project-id="compound_sumqayit">
+          <div class="pcard-img">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=80&auto=format&fit=crop" alt="Compound Sumqayıt" loading="lazy">
+            <div class="pcard-overlay">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat" data-translate="nav_construction">Tikinti</span>
+            <h3>Compound Sumqayıt</h3>
+            <p data-translate="project_compound_info">Yaşayış Kompleksi · Sumqayıt · 2023</p>
+          </div>
+        </a>
+
+        <a href="#" class="pcard" data-cat="arch" data-project-id="tower_office">
+          <div class="pcard-img">
+            <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=700&q=80&auto=format&fit=crop" alt="Tower Office" loading="lazy">
+            <div class="pcard-overlay">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat" data-translate="nav_arch">Arxitektura</span>
+            <h3>Tower Office</h3>
+            <p data-translate="project_tower_office_info">Biznes Mərkəzi · Bakı · 2023</p>
+          </div>
+        </a>
+
+      </div>
+
+      <div class="portfolio-more">
+        <a href="#portfolio" class="btn-outline-dark" id="viewAllProjectsBtn"><span data-translate="btn_all_projects_view">Bütün layihələrə bax</span> <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ NUMBERS ═══════════════════════════════════ -->
+  <section class="numbers">
+    <div class="container">
+      <div class="numbers-grid">
+        <div class="nitem">
+          <span class="nval"><span class="nc" data-count="140">0</span>+</span>
+          <span class="nlabel" data-translate="num_completed">Tamamlanan layihələr</span>
+        </div>
+        <div class="nitem">
+          <span class="nval"><span class="nc" data-count="18">0</span></span>
+          <span class="nlabel" data-translate="experience_years">İllik təcrübə</span>
+        </div>
+        <div class="nitem">
+          <span class="nval"><span class="nc" data-count="12">0</span></span>
+          <span class="nlabel" data-translate="num_awards">Arxitektura mükafatları</span>
+        </div>
+        <div class="nitem">
+          <span class="nval"><span class="nc" data-count="8">0</span></span>
+          <span class="nlabel" data-translate="num_cities">Xidmət göstərilən şəhərlər</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PROCESS ═══════════════════════════════════ -->
+  <section class="process">
+    <div class="container">
+      <div class="section-top center">
+        <div>
+          <p class="label" data-translate="process_label">İş prosesi</p>
+          <h2 class="section-title" data-translate="process_title">Biz necə işləyirik?</h2>
+        </div>
+      </div>
+      <div class="process-grid">
+        <div class="pstep">
+          <div class="pstep-num">01</div>
+          <div class="pstep-icon">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="20" cy="14" r="7"/><path d="M6 34c0-7.7 6.3-14 14-14s14 6.3 14 14"/></svg>
+          </div>
+          <h3 data-translate="step1_title">Konsultasiya</h3>
+          <p data-translate="step1_desc">Ehtiyaclarınızı anlamaq. Arzularınız, büdcəniz və müddətləriniz barədə müzakirə edirik.</p>
+        </div>
+        <div class="pstep">
+          <div class="pstep-num">02</div>
+          <div class="pstep-icon">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="8" width="28" height="24" rx="2"/><line x1="12" y1="16" x2="28" y2="16"/><line x1="12" y1="22" x2="22" y2="22"/><line x1="12" y1="28" x2="20" y2="28"/></svg>
+          </div>
+          <h3 data-translate="step2_title">Layihələndirmə</h3>
+          <p data-translate="step2_desc">Güclü bir arxitektura ideyası — eskizlər, modellər və materiallar vasitəsilə işlənib hazırlanır.</p>
+        </div>
+        <div class="pstep">
+          <div class="pstep-num">03</div>
+          <div class="pstep-icon">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 34V18l14-10 14 10v16"/><path d="M16 34v-8h8v8"/></svg>
+          </div>
+          <h3 data-translate="step3_title">Tikinti</h3>
+          <p data-translate="step3_desc">Layihə tam nəzarət altında həyata keçirilir. Keyfiyyət və müddətlərə ciddi riayət edilir.</p>
+        </div>
+        <div class="pstep">
+          <div class="pstep-num">04</div>
+          <div class="pstep-icon">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 20l8 8 16-16"/><circle cx="20" cy="20" r="16"/></svg>
+          </div>
+          <h3 data-translate="step4_title">Təhvil vermə</h3>
+          <p data-translate="step4_desc">Açarların təhvilinə qədər yanınızdayıq. Hazır iş layihəyə tam uyğun gəlir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TESTIMONIAL ═══════════════════════════════ -->
+  <section class="testimonial">
+    <div class="container">
+      <div class="testi-inner">
+        <div class="testi-img">
+          <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=700&q=85&auto=format&fit=crop" alt="Casa Azur" loading="lazy">
+        </div>
+        <div class="testi-content">
+          <div class="testi-stars">★★★★★</div>
+          <blockquote data-translate="testi_quote">"ELCAN INSHAAT ilə işləmək inanılmaz bir təcrübə oldu. Onlar sadəcə vizual baxımdan nə istədiyimizi deyil, necə yaşamaq istədiyimizi də anladılar — və bu arzuları gerçəkliyə çevirdilər."</blockquote>
+          <cite>
+            <strong>Əliyar Nəsirov</strong>
+            <span data-translate="testi_cite">Casa Azur, Bakı · 2024</span>
+          </cite>
+          <a href="#" id="showAllReviewsBtn" class="link-more" style="margin-top:24px;display:inline-flex"><span data-translate="testi_all_reviews">Bütün rəylər</span> <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT ═══════════════════════════════════ -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-left">
+          <p class="label" data-translate="nav_contact">Əlaqə</p>
+          <h2 class="section-title" data-translate="contact_title">Layihənizi<br><span class="red">başlayaq!</span></h2>
+          <p class="contact-sub" data-translate="contact_sub">Biz hər il məhdud sayda layihə qəbul edirik. Əgər sizin ideyalar varsa — biz dinləməyə hazırıq.</p>
+
+          <div class="cinfo">
+            <a href="tel:+994703052005" class="cinfo-item">
+              <div class="cinfo-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M4 2h4l2 4.5-2.5 2a12 12 0 005.5 5.5l2-2.5 4.5 2v4A1.5 1.5 0 0118 19C9 19 1 11 1 2A1.5 1.5 0 012.5.5h4L4 2z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+              <div><span data-translate="contact_phone_label">Telefon</span><strong>+994 70 305 20 05</strong></div>
+            </a>
+            <a href="https://wa.me/994703052005" class="cinfo-item" target="_blank">
+              <div class="cinfo-icon wa"><svg viewBox="0 0 20 20" fill="none"><path d="M10 1C5 1 1 5 1 10c0 1.6.4 3.2 1.2 4.6L1 19l4.6-1.2A9 9 0 1010 1z" stroke="currentColor" stroke-width="1.4"/><path d="M7 8c.4.9 1 1.8 1.8 2.6.8.8 1.7 1.4 2.6 1.8l1.2-1.2c.2-.2.4-.2.6-.1.7.3 1.5.5 2.3.5.3 0 .5.2.5.5V14c0 .3-.2.5-.5.5A8.5 8.5 0 015.5 6c0-.3.2-.5.5-.5H7.5c.3 0 .5.2.5.5 0 .8.2 1.6.5 2.3.1.2 0 .4-.1.6L7 8z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+              <div><span>WhatsApp</span><strong>+994 70 305 20 05</strong></div>
+            </a>
+            <a href="mailto:elcancbrayilli2@gmail.com" class="cinfo-item">
+              <div class="cinfo-icon"><svg viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M2 6l8 5 8-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+              <div><span>Email</span><strong>elcancbrayilli2@gmail.com</strong></div>
+            </a>
+            <div class="cinfo-item">
+              <div class="cinfo-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2a6 6 0 00-6 6c0 4.5 6 10 6 10s6-5.5 6-10a6 6 0 00-6-6z" stroke="currentColor" stroke-width="1.4"/><circle cx="10" cy="8" r="2" stroke="currentColor" stroke-width="1.4"/></svg></div>
+              <div><span data-translate="contact_address_label">Ünvan</span><strong data-translate="contact_address_val">Bakı, Azərbaycan</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-right">
+          <form class="form" id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname" data-translate="form_name">Adınız *</label>
+                <input type="text" id="fname" name="name" placeholder="Tam adınız" data-translate-placeholder="form_name_placeholder" required>
+              </div>
+              <div class="form-group">
+                <label for="fphone" data-translate="form_phone">Telefon *</label>
+                <input type="tel" id="fphone" name="phone" placeholder="+994 __ ___ __ __" data-translate-placeholder="form_phone_placeholder" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="femail" data-translate="form_email">Email</label>
+              <input type="email" id="femail" name="email" placeholder="email@nümunə.az" data-translate-placeholder="form_email_placeholder">
+            </div>
+            <div class="form-group">
+              <label for="ftype" data-translate="form_project_type">Layihənin növü</label>
+              <select id="ftype" name="type">
+                <option value="" data-translate="form_select">Seçin</option>
+                <option data-translate="type_villa">Xüsusi Ev / Villa</option>
+                <option data-translate="type_commercial">Kommersiya Binası</option>
+                <option data-translate="type_interior">Yalnız İnteryer Dizaynı</option>
+                <option data-translate="type_masterplan">Şəhərsalma / Masterplan</option>
+                <option data-translate="type_other">Digər</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="fmsg" data-translate="form_about_project">Layihə haqqında *</label>
+              <textarea id="fmsg" name="message" rows="4" placeholder="Layihənizi qısaca təsvir edin..." data-translate-placeholder="form_message_placeholder" required></textarea>
+            </div>
+            <button type="submit" class="btn-red w-full" id="submitBtn">
+              <span id="submitTxt" data-translate="form_submit">Göndər</span>
+              <svg viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <p class="form-note" data-translate="form_note">* — məcburi sahələr. Məlumatlarınız üçüncü şəxslərə verilmir.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="logo logo--white">
+            <svg width="34" height="34" viewBox="0 0 40 40" fill="none">
+              <path d="M20 1L39 20L20 39L1 20Z" fill="#CC2020"/>
+              <path d="M20 1L39 20L20 20Z" fill="#FF6666" opacity=".45"/>
+              <path d="M20 20L39 20L20 39Z" fill="#881111" opacity=".55"/>
+              <path d="M20 10L29 20L20 30L11 20Z" fill="white" opacity=".12"/>
+            </svg>
+            <div class="logo-text">
+              <span class="logo-main">Elcan</span>
+              <span class="logo-sub" data-translate="logo_sub">İnşaat</span>
+            </div>
+          </a>
+          <p data-translate="footer_desc">Arxitektura, tikinti və interyer dizaynı studiyası.<br>Bakı, Azərbaycan</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="4" stroke="currentColor" stroke-width="1.4"/><circle cx="10" cy="10" r="3.5" stroke="currentColor" stroke-width="1.4"/><circle cx="14" cy="6" r="1" fill="currentColor"/></svg>
+            </a>
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.4"/><path d="M11 10h2.5l.5-2.5H11V6c0-.7.4-1 1-1h2V2.5C13.2 2.2 12.4 2 11.5 2 9.5 2 8 3.4 8 5.5V7.5H6V10h2v8h3v-8z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="https://wa.me/994703052005" aria-label="WhatsApp" target="_blank">
+              <svg viewBox="0 0 20 20" fill="none"><path d="M10 1C5 1 1 5 1 10c0 1.6.4 3.2 1.2 4.6L1 19l4.6-1.2A9 9 0 1010 1z" stroke="currentColor" stroke-width="1.4"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-nav">
+          <div class="fn-col">
+            <h4 data-translate="nav_company">Şirkət</h4>
+            <a href="#about" data-translate="nav_about">Haqqımızda</a>
+            <a href="#about" data-translate="nav_team">Komandamız</a>
+            <a href="#about" data-translate="nav_awards">Mükafatlar</a>
+            <a href="#about" data-translate="nav_partners">Tərəfdaşlar</a>
+          </div>
+          <div class="fn-col">
+            <h4 data-translate="nav_services">Xidmətlər</h4>
+            <a href="#services" data-translate="nav_arch">Arxitektura</a>
+            <a href="#services" data-translate="nav_interior_design">İnteryer dizaynı</a>
+            <a href="#services" data-translate="nav_construction">Tikinti</a>
+            <a href="#services" data-translate="nav_landscape">Landşaft</a>
+          </div>
+          <div class="fn-col">
+            <h4 data-translate="nav_portfolio">Portfolio</h4>
+            <a href="#portfolio" data-filter-trigger="all" data-translate="nav_all_projects">Bütün layihələr</a>
+            <a href="#portfolio" data-filter-trigger="arch" data-translate="nav_arch">Arxitektura</a>
+            <a href="#portfolio" data-filter-trigger="interior" data-translate="nav_interior">İnteryer</a>
+            <a href="#portfolio" data-filter-trigger="construction" data-translate="nav_construction">Tikinti</a>
+          </div>
+          <div class="fn-col">
+            <h4 data-translate="nav_contact">Əlaqə</h4>
+            <a href="tel:+994703052005">+994 70 305 20 05</a>
+            <a href="mailto:elcancbrayilli2@gmail.com">elcancbrayilli2@gmail.com</a>
+            <a href="#contact" data-translate="contact_address_val">Bakı, Azərbaycan</a>
+            <a href="#" style="pointer-events:none" data-translate="footer_working_hours">İş vaxtı: 9:00–18:00</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span data-translate="footer_copy">© 2024 Elcan İnşaat. Bütün hüquqlar qorunur.</span>
+        <button class="back-top" id="backTop" data-translate="back_to_top">↑ Yuxarı</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/994703052005" class="wa-fab" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.3C8.6 21.5 10.3 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm4.2 13.4c-.2.5-1 1-1.6 1.1-.4.1-.9.1-1.4-.1-.3-.1-.7-.2-1.2-.5-2.1-1-3.5-3.1-3.6-3.2-.1-.2-.9-1.2-.9-2.3 0-1.1.6-1.6.8-1.9.2-.2.5-.3.6-.3h.5c.1 0 .3 0 .5.4.2.4.6 1.5.7 1.6.1.1.1.3 0 .5-.1.1-.2.3-.3.4-.1.1-.2.3-.1.5.1.2.6.9 1.2 1.5.8.8 1.5 1 1.7 1.1.2.1.4.1.5-.1.2-.2.6-.7.8-.9.2-.2.4-.2.6-.1.2.1 1.3.6 1.5.7.2.1.4.2.5.3.1.1.1.7-.1 1.2z"/></svg>
+  </a>
+
+  <!-- Portfolio Details Modal -->
+  <div class="modal-overlay" id="portfolioModal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose" aria-label="Bağla">×</button>
+      <div class="modal-grid">
+        <div class="modal-gallery">
+          <img src="" id="modalImg" alt="Project image">
+        </div>
+        <div class="modal-details">
+          <span class="modal-cat" id="modalCat">Arxitektura</span>
+          <h2 class="modal-title" id="modalTitle">Project Title</h2>
+          <div class="modal-meta">
+            <p><strong data-translate="modal_loc_label">Ünvan:</strong> <span id="modalLoc">Bakı</span></p>
+            <p><strong data-translate="modal_year_label">İl:</strong> <span id="modalYear">2024</span></p>
+          </div>
+          <p class="modal-desc" id="modalDesc">Detailed description of the project goes here...</p>
+          <button class="btn-red w-full" id="modalOrderBtn" data-translate="modal_order_btn">Layihəni Sifariş Et</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal-overlay modal-overlay--small" id="successModal" aria-hidden="true">
+    <div class="modal-content success-content">
+      <button class="modal-close" id="successClose" aria-label="Bağla">×</button>
+      <div class="success-icon-wrap">
+        <svg viewBox="0 0 52 52" class="checkmark">
+          <circle cx="26" cy="26" r="25" fill="none" class="checkmark-circle"/>
+          <path fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" class="checkmark-check"/>
+        </svg>
+      </div>
+      <h3 data-translate="success_title">Sifarişiniz Qəbul Olundu!</h3>
+      <p data-translate="success_desc">Ən qısa zamanda sizinlə əlaqə saxlayacağıq. Təşəkkür edirik!</p>
+      <button class="btn-dark" id="successOkBtn" data-translate="ok">Tamam</button>
+    </div>
+  </div>
+
+  <!-- Reviews Modal -->
+  <div class="modal-overlay" id="reviewsModal" aria-hidden="true">
+    <div class="modal-content modal-content--medium">
+      <button class="modal-close" id="reviewsClose" aria-label="Bağla">×</button>
+      <h3 class="modal-title" style="margin-bottom: 24px; text-align: center;" data-translate="testi_all_reviews">Bütün rəylər</h3>
+      <div class="reviews-list">
+        <div class="review-item">
+          <div class="testi-stars">★★★★★</div>
+          <p data-translate="testi_quote">"ELCAN INSHAAT ilə işləmək inanılmaz bir təcrübə oldu. Onlar sadəcə vizual baxımdan nə istədiyimizi deyil, necə yaşamaq istədiyimizi də anladılar — və bu arzuları gerçəkliyə çevirdilər."</p>
+          <cite>
+            <strong>Əliyar Nəsirov</strong>
+            <span data-translate="testi_cite">Casa Azur, Bakı · 2024</span>
+          </cite>
+        </div>
+        <div class="review-item">
+          <div class="testi-stars">★★★★★</div>
+          <p data-translate="review2_text">"Evimizin interyer dizaynı üçün müraciət etdik. İşini vaxtında və peşəkar təhvil verdilər. Material seçimləri və işıqlandırma detalları heyranedicidir."</p>
+          <cite>
+            <strong>Leyla Qasımova</strong>
+            <span data-translate="review2_cite">Meridian Penthouse, Bakı · 2024</span>
+          </cite>
+        </div>
+        <div class="review-item">
+          <div class="testi-stars">★★★★★</div>
+          <p data-translate="review3_text">"Monolit beton işləri və tikinti tam layihəyə uyğun olaraq idarə olundu. Hər mərhələdə hesabat verdilər. Keyfiyyət üçün təşəkkürlər!"</p>
+          <cite>
+            <strong>Fərid Məmmədov</strong>
+            <span data-translate="review3_cite">Compound Sumqayıt · 2023</span>
+          </cite>
+        </div>
+        <div class="review-item">
+          <div class="testi-stars">★★★★★</div>
+          <p data-translate="review4_text">"Landşaft və bağımızın layihələndirilməsi çox gözəl alındı. Villa ilə bağın harmoniyası mükəmməldir."</p>
+          <cite>
+            <strong>Elnur Həsənov</strong>
+            <span data-translate="review4_cite">Villa Travertine, Gəncə · 2024</span>
+          </cite>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Company Modal -->
+  <div class="modal-overlay" id="aboutCompanyModal" aria-hidden="true">
+    <div class="modal-content modal-content--large">
+      <button class="modal-close" id="aboutCompanyClose" aria-label="Bağla">×</button>
+      <h3 class="modal-title" style="margin-bottom: 24px; text-align: center;" data-translate="nav_company">Şirkət</h3>
+      
+      <div class="about-modal-tabs">
+        <button class="about-tab active" data-about-tab="profile" data-translate="nav_about">Haqqımızda</button>
+        <button class="about-tab" data-about-tab="partners" data-translate="nav_partners">Tərəfdaşlar</button>
+      </div>
+
+      <div class="about-tab-content active" id="about-tab-profile">
+        <div class="about-profile-grid">
+          <div>
+            <h4 data-translate="about_mission_title" style="font-weight: 800; color: var(--dark); margin-bottom: 8px;">Məqsədimiz</h4>
+            <p data-translate="about_mission_desc" style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 16px;">Müştərilərimizin xəyallarındakı yaşayış və iş məkanlarını ən yüksək keyfiyyət standartları ilə gerçəkliyə çevirmək, modern və funksional memarlıq sahəsində fərq yaratmaq.</p>
+            <h4 data-translate="about_history_title" style="font-weight: 800; color: var(--dark); margin-bottom: 8px;">Tariximiz</h4>
+            <p data-translate="about_history_desc" style="font-size: 14px; color: var(--muted); line-height: 1.6;">ELCAN INSHAAT olaraq, 18 ildən artıq təcrübəmizlə Azərbaycanda və beynəlxalq memarlıq arenasında 140-dan çox layihəni uğurla tamamlamışıq. İlk eskizdən açarların təhvilinə qədər peşəkar komandamızla müştərilərimizin xidmətindəyik.</p>
+          </div>
+          <div style="border-radius: var(--r); overflow: hidden; aspect-ratio: 16/10;">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" alt="Studio" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+        </div>
+      </div>
+
+      <div class="about-tab-content" id="about-tab-partners">
+        <div class="about-partners-grid">
+          <div class="partner-card">Knauf</div>
+          <div class="partner-card">Mapei</div>
+          <div class="partner-card">Koma</div>
+          <div class="partner-card">Sika</div>
+          <div class="partner-card">Reynaers</div>
+          <div class="partner-card">Basf</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
