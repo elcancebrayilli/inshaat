@@ -8,6 +8,35 @@ const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const easeOut = t => 1 - Math.pow(1 - t, 4);
 
 /* ════════════════════════════════════════════════
+   DARK MODE CONTROLLER
+   ════════════════════════════════════════════════ */
+(function () {
+  const toggles = $$('.theme-toggle');
+  if (!toggles.length) return;
+
+  function updateThemeBadges() {
+    const isDark = document.documentElement.classList.contains('dark-theme');
+    const dict = translations[currentLang] || translations.az;
+    $$('.mob-theme-badge').forEach(badge => {
+      badge.textContent = isDark 
+        ? (dict.mob_theme_light || 'İşıqlı') 
+        : (dict.mob_theme_dark || 'Qaranlıq');
+    });
+  }
+
+  toggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark-theme');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateThemeBadges();
+    });
+  });
+
+  window.updateThemeBadgeText = updateThemeBadges;
+  setTimeout(updateThemeBadges, 50);
+})();
+
+/* ════════════════════════════════════════════════
    TRANSLATION ENGINE & DICTIONARY
    ════════════════════════════════════════════════ */
 const translations = {
@@ -65,7 +94,14 @@ const translations = {
     project_stone_house_info: "Xüsusi Ev · Şəki · 2023",
     project_compound_info: "Yaşayış Kompleksi · Sumqayıt · 2023",
     project_tower_office_info: "Biznes Mərkəzi · Bakı · 2023",
+    project_baku_bay_info: "Lüks Rezidensiya · Ağ Şəhər, Bakı · 2024",
+    project_skyline_loft_info: "Müasir Loft · Port Baku · 2024",
+    project_caspian_panorama_info: "Fərdi Villa & Hovuz · Mərdəkan · 2024",
+    project_sea_breeze_info: "Dəniz Kənarı Penthaus · Nardaran · 2023",
+    project_green_garden_info: "Eko-Rezidensiya · Qəbələ · 2023",
+    project_emerald_plaza_info: "Biznes & Ofis Mərkəzi · Gəncə · 2023",
     btn_all_projects_view: "Bütün layihələrə bax",
+    btn_show_less: "Daha az göstər",
     num_completed: "Tamamlanan layihələr",
     num_awards: "Arxitektura mükafatları",
     num_cities: "Xidmət göstərilən şəhərlər",
@@ -134,7 +170,83 @@ const translations = {
     success_desc: "Ən qısa zamanda sizinlə əlaqə saxlayacağıq. Təşəkkür edirik!",
     ok: "Tamam",
     page_title: "Elcan İnşaat — Arxitektura & Tikinti",
-    meta_desc: "Elcan İnşaat — Arxitektura, tikinti və interyer dizaynı şirkəti. Bakı, Azərbaycan."
+    meta_desc: "Elcan İnşaat — Arxitektura, tikinti və interyer dizaynı şirkəti. Bakı, Azərbaycan.",
+    nav_calculator: "Kalkulyator",
+    nav_warranty: "Zəmanət",
+    nav_faq: "FAQ",
+    nav_blog: "Bloq və Məqalələr",
+    nav_locations: "Layihə Coğrafiyası",
+    calc_badge: "Büdcə Planlaşdırması",
+    calc_title: "İnteraktiv Tikinti & Təmir Kalkulyatoru",
+    calc_subtitle: "Sahəni, xidmət növünü və paketi seçərək layihənizin ilkin büdcəsini dərhal hesablayın.",
+    calc_area_label: "Obyektin sahəsi (m²)",
+    calc_service_label: "Xidmət növü",
+    srv_turnkey_title: "Açar təslimi tikinti",
+    srv_renovation_title: "Əsaslı təmir",
+    srv_arch_title: "Memarlıq & Layihə",
+    srv_interior_title: "İnteryer dizayn",
+    calc_package_label: "Material və İşçilik Paketi",
+    pkg_standard: "Standart",
+    pkg_premium: "Premium",
+    pkg_luxury: "Lüks (VIP)",
+    calc_est_total: "Təxmini Layihə Dəyəri",
+    calc_est_time: "Təxmini icra müddəti:",
+    calc_feat1: "Rəsmi müqavilə və zəmanət",
+    calc_feat2: "Materiallara 100% keyfiyyət nəzarəti",
+    calc_feat3: "Mərhələli video & foto hesabat",
+    calc_btn_order: "Bu Hesablamanı Sifariş Et",
+    calc_btn_wa: "WhatsApp ilə göndər",
+    locations_badge: "Fəaliyyət Coğrafiyamız",
+    locations_title: "Azərbaycanın Müxtəlif Şəhərlərində Layihələrimiz",
+    locations_subtitle: "Paytaxt Bakı ilə yanaşı, regionlarda da fərdi villalar, kommersiya və turizm obyektləri inşa edirik.",
+    city_baku: "Bakı & Abşeron",
+    city_baku_stats: "85+ Tamamlanmış Layihə",
+    city_ganja: "Gəncə",
+    city_ganja_stats: "22+ Tamamlanmış Layihə",
+    city_sheki: "Şəki & Qəbələ",
+    city_sheki_stats: "18+ Tamamlanmış Layihə",
+    city_sumqayit: "Sumqayıt",
+    city_sumqayit_stats: "15+ Tamamlanmış Layihə",
+    warranty_badge: "Təhlükəsizlik və Etibarlılıq",
+    warranty_title: "Rəsmi Lisenziyalar və Zəmanət Öhdəliklərimiz",
+    warranty_subtitle: "Bütün inşaat işlərimiz dövlət lisenziyası və beynəlxalq standartlara tam uyğun olaraq həyata keçirilir.",
+    war1_title: "25 İllik Monolit Zəmanəti",
+    war1_desc: "Dəmir-beton və karkas monolit konstruksiyalara rəsmi müqavilə əsasında 25 illik zəlzələ və çökməyə qarşı davamlılıq zəmanəti verilir.",
+    war2_title: "Dövlət Tikinti Lisenziyası",
+    war2_desc: "Fövqəladə Hallar Nazirliyi və Dövlət Şəhərsalma Komitəsinin rəsmi lisenziyaları əsasında 1-ci dərəcəli məsuliyyətli binaların inşası hüququ.",
+    war3_title: "5 İllik Fasad & Təmir Zəmanəti",
+    war3_desc: "İstifadə olunan fasad örtüklərinə, izolyasiya sistemlərinə və daxili mühəndislik-kommunikasiya xətlərinə tam 5 illik texniki servis zəmanəti.",
+    faq_badge: "Suallar və Cavablar",
+    faq_title: "Tez-tez Verilən Suallar",
+    faq_subtitle: "Tikinti və memarlıq xidmətlərimizlə bağlı müştərilərimizin ən çox maraqlandığı sualların cavabları.",
+    faq_q1: "Tikintiyə icazə sənədlərinin alınmasında köməklik göstərirsinizmi?",
+    faq_a1: "Bəli, memarlıq layihəsinin hazırlanmasından tutmuş, Dövlət Şəhərsalma və Arxitektura Komitəsindən və müvafiq icra hakimiyyəti orqanlarından tikintiyə icazənin (çıxarış/sərəncam) rəsmi qaydada alınmasına qədər bütün sənədləşmə prosesini həyata keçiririk.",
+    faq_q2: "Tikinti zamanı ödəniş mərhələləri necə bölünür?",
+    faq_a2: "Ödənişlər birbaşa iş qrafikinə uyğun olaraq mərhələlərə bölünür: İlkin ödəniş (təməl işləri), monolit karkasın tamamlanması, hörgü və fasad, və yekun daxili təmir təhvili. Hər mərhələ video və foto aktla təsdiqləndikdən sonra növbəti mərhələnin ödənişi edilir.",
+    faq_q3: "Tikinti materiallarının keyfiyyətinə necə nəzarət olunur?",
+    faq_a3: "İnşaat prosesində yalnız beynəlxalq və dövlət standartlarına (AZS/İSO) uyğun sertifikatlaşdırılmış brendlərin (Knauf, Mapei, Sika, BASF, Reynaers) materiallarından istifadə olunur. Betonun möhkəmliyi hər tökümdə laboratoriya testindən keçirilir.",
+    faq_q4: "Eskiz və 3D vizualizasiya layihəsi nə qədər vaxta hazırlanır?",
+    faq_a4: "Obyektin ölçüsündən asılı olaraq ilkin memarlıq konsepti və planlaşdırma 7-10 iş günü, fotorealistik 3D eksteryer və interyer vizualizasiyaları isə 15-25 iş günü ərzində tam hazır şəkildə təqdim olunur.",
+    faq_q5: "Müqavilə və rəsmi zəmanət şərtləri necədir?",
+    faq_a5: "İşlərə başlamazdan əvvəl tərəflər arasında hüquqi qüvvəyə malik rəsmi müqavilə və smeta təsdiq olunur. Konstruktiv hissəyə 25 il, təmir-bəzək və mühəndislik sistemlərinə isə 5 il rəsmi yazılı zəmanət verilir.",
+    blog_badge: "Bloq & Faydalı Məqalələr",
+    blog_title: "Memarlıq və İnşaat Məsləhətləri",
+    blog_subtitle: "Ev tikintisi, interyer dizaynı və düzgün material seçimi haqqında ekspert yazıları.",
+    blog_tag_construct: "Tikinti",
+    blog_tag_arch: "Arxitektura",
+    blog_tag_manage: "İdarəetmə",
+    btn_read_more: "Davamını oxu",
+    blog1_title: "Müasir Villalarda Düzgün Təməl və Monolit Seçimi",
+    blog1_desc: "Geoloji kəşfiyyatın əhəmiyyəti, torpaq xüsusiyyətlərinə uyğun monolit plitə və lentvari təməl seçimlərinin incəlikləri.",
+    blog2_title: "2025-ci İlin Memarlıq və Premium Fasad Trendləri",
+    blog2_desc: "Təbii travertin daşı, panoramik şüşələnmə və enerjiyə qənaət edən ventilyasiyalı fasad sistemlərinin harmoniyası.",
+    blog3_title: "Açar Təslimi Tikintidə Büdcəyə Qənaət Yolları",
+    blog3_desc: "Keyfiyyətdən güzəştə getmədən layihə mərhələsində düzgün planlaşdırma ilə xərclərin 20%-ə qədər azaldılması yolları.",
+    mob_lang_label: "Dil seçimi / Language:",
+    mob_theme_label: "Qaranlıq Rejim",
+    mob_theme_dark: "Qaranlıq",
+    mob_theme_light: "İşıqlı",
+    mob_theme_action: "Dəyiş"
   },
   ru: {
     logo_sub: "Строительство",
@@ -154,80 +266,87 @@ const translations = {
     nav_cooperation: "Сотрудничество",
     nav_media: "Медиа",
     nav_news: "Новости",
-    nav_photos: "Фотогалерея",
+    nav_photos: "Фото галерея",
     nav_video: "Видео",
     nav_contact: "Контакты",
     slide1_tag: "Архитектурная студия · Баку, Азербайджан",
-    slide1_title: "Вы мечтайте —<br>мы воплотим в<br><span class=\"red\">жизнь</span>",
-    slide1_sub: "Мы всегда к вашим услугам с нашим профессиональным и международным опытом. Вы мечтаете, мы реализуем.",
+    slide1_title: "Вы мечтаете —<br>мы воплощаем<br><span class=\"red\">в реальность</span>",
+    slide1_sub: "Мы всегда к вашим услугам с нашим профессиональным опытом. Вы мечтаете, мы строим.",
     btn_about_company: "О компании",
     slide2_tag: "Дизайн интерьера · 18 лет опыта",
     slide2_title: "Успешно реализовано<br>более 140<br><span class=\"red\">проектов</span>",
-    slide2_sub: "Полное внимание к каждому проекту, профессиональный подход и качественные материалы.",
+    slide2_sub: "Внимание к каждому проекту, профессиональный подход и качественные материалы.",
     btn_view_portfolio: "Посмотреть портфолио",
     slide3_tag: "Строительство · Полный цикл услуг",
     slide3_title: "От первого эскиза<br>до сдачи<br><span class=\"red\">ключей</span>",
-    slide3_sub: "Архитектура, дизайн и строительство — все под одной крышей. Самое удобное решение для вас.",
-    btn_submit_request: "Связаться с нами",
+    slide3_sub: "Архитектура, дизайн и строительство — все под одной крышей. Удобное решение для вас.",
+    btn_submit_request: "Оставить заявку",
     services_title: "Что мы предлагаем?",
     filter_all: "Все",
-    srv_arch_desc: "От концепции до конца строительства — профессиональное проектирование жилых и коммерческих зданий.",
+    srv_arch_desc: "От концепции до завершения строительства — профессиональное проектирование зданий.",
     btn_details: "Подробнее",
-    srv_interior_desc: "Интерьеры, которые дышат. Материалы, освещение, эксклюзивная мебель — единое, богатое атмосферой пространство.",
-    srv_construction_desc: "Полное управление строительством — контроль материалов, выбор мастеров, соблюдение сроков проекта.",
-    srv_landscape_desc: "Окружение здания также важно. Проектирование садов и ландшафтов — в гармонии с природой.",
+    srv_interior_desc: "Интерьеры, в которых дышится легко. Материалы, свет, эксклюзивная мебель.",
+    srv_construction_desc: "Полное управление строительством — контроль материалов, соблюдение сроков.",
+    srv_landscape_desc: "Окружение здания имеет значение. Проектирование сада и ландшафта в гармонии с природой.",
     experience_years: "Лет опыта",
     about_title: "Качество и профессиональный подход",
-    about_text1: "ELCAN INSHAAT — архитектурная студия в Баку. Мы предоставляем комплексные услуги по архитектуре, строительству и дизайну интерьеров. Творческий и профессиональный подход к каждому проекту.",
-    about_text2: "Мы работаем с ограниченным количеством клиентов одновременно — это позволяет нам уделять максимум внимания каждому проекту.",
+    about_text1: "ELCAN INSHAAT — архитектурная студия в Баку. Мы предоставляем комплексные услуги по архитектуре, строительству и дизайну интерьера.",
+    about_text2: "Мы работаем с ограниченным числом клиентов одновременно, что позволяет уделять максимум внимания каждому проекту.",
     projects_label: "Проекты",
     awards_label: "Награды",
     btn_about_company_more: "Подробнее о компании",
     portfolio_title: "Последние проекты",
     project_casa_azur_info: "Частная резиденция · Баку · 2024",
-    project_meridian_info: "Люкс апартаменты · Баку · 2024",
+    project_meridian_info: "Элитные апартаменты · Баку · 2024",
     project_travertine_info: "Частная вилла · Гянджа · 2024",
     project_stone_house_info: "Частный дом · Шеки · 2023",
     project_compound_info: "Жилой комплекс · Сумгаит · 2023",
     project_tower_office_info: "Бизнес-центр · Баку · 2023",
-    btn_all_projects_view: "Посмотреть все проекты",
+    project_baku_bay_info: "Люкс Резиденция · Белый Город, Баку · 2024",
+    project_skyline_loft_info: "Современный Лофт · Port Baku · 2024",
+    project_caspian_panorama_info: "Частная Вилла · Мардакян · 2024",
+    project_sea_breeze_info: "Пентхаус у Моря · Нардаран · 2023",
+    project_green_garden_info: "Эко-Резиденция · Габала · 2023",
+    project_emerald_plaza_info: "Бизнес Центр · Гянджа · 2023",
+    btn_all_projects_view: "Смотреть все проекты",
+    btn_show_less: "Показать меньше",
     num_completed: "Завершенные проекты",
     num_awards: "Архитектурные награды",
-    num_cities: "Городов обслуживания",
-    process_label: "Ход работы",
+    num_cities: "Городов работы",
+    process_label: "Рабочий процесс",
     process_title: "Как мы работаем?",
     step1_title: "Консультация",
     step1_desc: "Понимание ваших потребностей. Обсуждаем ваши пожелания, бюджет и сроки.",
     step2_title: "Проектирование",
-    step2_desc: "Сильная архитектурная идея разрабатывается с помощью эскизов, моделей и материалов.",
+    step2_desc: "Сильная архитектурная идея разрабатывается через эскизы, модели и материалы.",
     step3_title: "Строительство",
-    step3_desc: "Проект реализуется под полным контролем. Строго соблюдаются качество и сроки.",
+    step3_desc: "Проект реализуется под полным контролем. Качество и сроки строго соблюдаются.",
     step4_title: "Сдача объекта",
     step4_desc: "Мы с вами до передачи ключей. Готовая работа полностью соответствует проекту.",
-    testi_quote: "\"Работать с ELCAN INSHAAT было невероятным опытом. Они поняли не только то, что мы хотели визуально, но и то, как мы хотели жить — и воплотили эти мечты в реальность.\"",
+    testi_quote: "\"Работа с ELCAN INSHAAT была невероятным опытом. Они поняли не только то, что мы хотели визуально, но и как мы хотели жить — и воплотили эти мечты в реальность.\"",
     testi_cite: "Casa Azur, Баку · 2024",
     testi_all_reviews: "Все отзывы",
-    review2_text: "Мы обратились за дизайном интерьера нашего дома. Сдали работу вовремя и профессионально. Выбор материалов и детали освещения просто потрясающие.",
+    review2_text: "Обратились за дизайном интерьера дома. Работу сдали вовремя и профессионально. Выбор материалов и освещение великолепны.",
     review2_cite: "Meridian Penthouse, Баку · 2024",
-    review3_text: "Монолитные бетонные работы и строительство велись в полном соответствии с проектом. Отчет предоставляли на каждом этапе. Спасибо за качество!",
+    review3_text: "Монолитно-бетонные работы и строительство велись строго по проекту. На каждом этапе предоставляли отчеты. Спасибо за качество!",
     review3_cite: "Compound Сумгаит · 2023",
-    review4_text: "Проектирование ландшафта и нашего сада получилось очень красивым. Гармония виллы с садом идеальна.",
+    review4_text: "Ландшафтный дизайн нашего сада получился великолепным. Гармония виллы с природой идеальна.",
     review4_cite: "Villa Travertine, Гянджа · 2024",
-    about_mission_title: "Наша цель",
-    about_mission_desc: "Воплощать в реальность жилые и рабочие пространства мечты наших клиентов с высочайшими стандартами качества, внося вклад в развитие архитектуры.",
+    about_mission_title: "Наша миссия",
+    about_mission_desc: "Превращать жилые и коммерческие пространства клиентов в реальность по высшим стандартам качества.",
     about_history_title: "Наша история",
-    about_history_desc: "Как ELCAN INSHAAT, с более чем 18-летним опытом, мы успешно завершили более 140 проектов в Азербайджане и за рубежом. Мы всегда к вашим услугам с первого дня с качественными материалами и профессиональной командой.",
-    role_founder: "Основатель и главный архитектор",
+    about_history_desc: "Как ELCAN INSHAAT, с более чем 18-летним опытом, мы успешно завершили более 140 проектов в Азербайджане и за рубежом.",
+    role_founder: "Основатель и Главный архитектор",
     role_designer: "Ведущий дизайнер интерьера",
     role_engineer: "Главный инженер",
     award1_title: "Архитектурная компания года",
-    award1_desc: "Азербайджанская архитектурно-строительная премия",
+    award1_desc: "Премия архитектуры и строительства Азербайджана",
     award2_title: "Лучший проект жилого комплекса",
     award2_desc: "Baku Architectural Expo 2021",
     award3_title: "Профессионализм в дизайне интерьера",
     award3_desc: "Диплом Международной Ассоциации Дизайна",
-    contact_title: "Давайте начнем<br><span class=\"red\">ваш проект!</span>",
-    contact_sub: "Мы принимаем ограниченное количество проектов каждый год. Если у вас есть идеи — мы готовы выслушать.",
+    contact_title: "Начнем<br><span class=\"red\">ваш проект!</span>",
+    contact_sub: "Мы принимаем ограниченное количество проектов в год. Если у вас есть идеи — мы готовы выслушать.",
     contact_phone_label: "Телефон",
     contact_address_label: "Адрес",
     contact_address_val: "Баку, Азербайджан",
@@ -236,7 +355,7 @@ const translations = {
     form_phone: "Телефон *",
     form_phone_placeholder: "+994 __ ___ __ __",
     form_email: "Email",
-    form_email_placeholder: "email@primer.az",
+    form_email_placeholder: "email@example.com",
     form_project_type: "Тип проекта",
     form_select: "Выберите",
     type_villa: "Частный дом / Вилла",
@@ -248,7 +367,7 @@ const translations = {
     form_message_placeholder: "Кратко опишите ваш проект...",
     form_submit: "Отправить",
     form_note: "* — обязательные поля. Ваши данные не передаются третьим лицам.",
-    footer_desc: "Студия архитектуры, строительства и дизайна интерьера.<br>Баку, Азербайджан",
+    footer_desc: "Студия архитектуры, строительства и дизайна интерьеров.<br>Баку, Азербайджан",
     footer_working_hours: "Рабочее время: 9:00–18:00",
     footer_copy: "© 2024 Elcan İnşaat. Все права защищены.",
     back_to_top: "↑ Наверх",
@@ -259,7 +378,83 @@ const translations = {
     success_desc: "Мы свяжемся с вами в ближайшее время. Спасибо!",
     ok: "Отлично",
     page_title: "Elcan İnşaat — Архитектура & Строительство",
-    meta_desc: "Elcan İnşaat — Компания по архитектуре, строительству и дизайну интерьеров. Баку, Азербайджан."
+    meta_desc: "Elcan İnşaat — Компания по архитектуре, строительству и дизайну интерьеров. Баку, Азербайджан.",
+    nav_calculator: "Калькулятор",
+    nav_warranty: "Гарантия",
+    nav_faq: "FAQ",
+    nav_blog: "Блог и Статьи",
+    nav_locations: "География Проектов",
+    calc_badge: "Планирование Бюджета",
+    calc_title: "Интерактивный Калькулятор Строительства",
+    calc_subtitle: "Рассчитайте предварительный бюджет, выбрав площадь, тип услуги и пакет материалов.",
+    calc_area_label: "Площадь объекта (м²)",
+    calc_service_label: "Тип услуги",
+    srv_turnkey_title: "Строительство под ключ",
+    srv_renovation_title: "Капитальный ремонт",
+    srv_arch_title: "Архитектура и Проект",
+    srv_interior_title: "Дизайн интерьера",
+    calc_package_label: "Пакет материалов и работ",
+    pkg_standard: "Стандарт",
+    pkg_premium: "Премиум",
+    pkg_luxury: "Люкс (VIP)",
+    calc_est_total: "Ориентировочная стоимость",
+    calc_est_time: "Ориентировочный срок:",
+    calc_feat1: "Официальный договор и гарантия",
+    calc_feat2: "100% контроль качества материалов",
+    calc_feat3: "Поэтапный фото и видео отчет",
+    calc_btn_order: "Заказать этот расчет",
+    calc_btn_wa: "Отправить в WhatsApp",
+    locations_badge: "География Деятельности",
+    locations_title: "Наши Проекты в Разных Городах",
+    locations_subtitle: "Помимо Баку, мы строим частные виллы и коммерческие объекты в регионах.",
+    city_baku: "Баку и Апшерон",
+    city_baku_stats: "85+ Завершенных Проектов",
+    city_ganja: "Гянджа",
+    city_ganja_stats: "22+ Завершенных Проектов",
+    city_sheki: "Шеки и Габала",
+    city_sheki_stats: "18+ Завершенных Проектов",
+    city_sumqayit: "Сумгаит",
+    city_sumqayit_stats: "15+ Завершенных Проектов",
+    warranty_badge: "Безопасность и Надежность",
+    warranty_title: "Официальные Лицензии и Гарантия",
+    warranty_subtitle: "Все строительные работы ведутся по государственной лицензии и международным стандартам.",
+    war1_title: "25 Лет Гарантии на Монолит",
+    war1_desc: "На железобетонные монолитные конструкции по договору предоставляется гарантия 25 лет.",
+    war2_title: "Государственная Лицензия",
+    war2_desc: "Право на строительство зданий 1-й категории ответственности на основе государственных лицензий.",
+    war3_title: "5 Лет Гарантии на Фасад и Ремонт",
+    war3_desc: "Полная 5-летняя сервисная гарантия на фасадные покрытия, изоляцию и инженерные коммуникации.",
+    faq_badge: "Вопросы и Ответы",
+    faq_title: "Часто Задаваемые Вопросы",
+    faq_subtitle: "Ответы на самые популярные вопросы о строительстве и архитектуре.",
+    faq_q1: "Помогаете ли вы в получении разрешений на строительство?",
+    faq_a1: "Да, мы осуществляем весь процесс согласования от разработки проекта до получения официального разрешения.",
+    faq_q2: "Как разделяются этапы оплаты при строительстве?",
+    faq_a2: "Оплата делится на этапы: фундамент, монолитный каркас, кладка и фасад, внутренняя отделка.",
+    faq_q3: "Как контролируется качество строительных материалов?",
+    faq_a3: "Мы используем только сертифицированные бренды (Knauf, Mapei, Sika, BASF). Бетон тестируется в лаборатории.",
+    faq_q4: "Сколько времени занимает разработка 3D проекта?",
+    faq_a4: "Эскизный концепт занимает 7-10 дней, полная 3D визуализация экстерьера и интерьера — 15-25 рабочих дней.",
+    faq_q5: "Каковы условия официального договора и гарантии?",
+    faq_a5: "Заключается официальный договор со сметой: 25 лет гарантии на конструктив, 5 лет на отделку и коммуникации.",
+    blog_badge: "Блог и Статьи",
+    blog_title: "Архитектурные и Строительные Советы",
+    blog_subtitle: "Экспертные статьи о строительстве домов, дизайне и выборе материалов.",
+    blog_tag_construct: "Строительство",
+    blog_tag_arch: "Архитектура",
+    blog_tag_manage: "Управление",
+    btn_read_more: "Читать далее",
+    blog1_title: "Правильный Выбор Фундамента и Монолита",
+    blog1_desc: "Значение геологических изысканий и тонкости выбора плитного или ленточного фундамента.",
+    blog2_title: "Архитектурные и Фасадные Тренды 2025 Года",
+    blog2_desc: "Натуральный травертин, панорамное остекление и вентилируемые фасадные системы.",
+    blog3_title: "Способы Экономии Бюджета при Строительстве под Ключ",
+    blog3_desc: "Как сэкономить до 20% бюджета за счет грамотного проектирования без потери качества.",
+    mob_lang_label: "Выбор языка / Language:",
+    mob_theme_label: "Темная тема",
+    mob_theme_dark: "Темная",
+    mob_theme_light: "Светлая",
+    mob_theme_action: "Сменить"
   },
   en: {
     logo_sub: "Construction",
@@ -315,7 +510,14 @@ const translations = {
     project_stone_house_info: "Private House · Sheki · 2023",
     project_compound_info: "Residential Complex · Sumqayit · 2023",
     project_tower_office_info: "Business Center · Baku · 2023",
+    project_baku_bay_info: "Luxury Residence · White City, Baku · 2024",
+    project_skyline_loft_info: "Modern Loft · Port Baku · 2024",
+    project_caspian_panorama_info: "Private Villa · Mardakan · 2024",
+    project_sea_breeze_info: "Seaside Penthouse · Nardaran · 2023",
+    project_green_garden_info: "Eco-Residence · Gabala · 2023",
+    project_emerald_plaza_info: "Business Center · Ganja · 2023",
     btn_all_projects_view: "View all projects",
+    btn_show_less: "Show less",
     num_completed: "Completed projects",
     num_awards: "Architectural awards",
     num_cities: "Cities served",
@@ -384,7 +586,83 @@ const translations = {
     success_desc: "We will contact you as soon as possible. Thank you!",
     ok: "Done",
     page_title: "Elcan İnşaat — Architecture & Construction",
-    meta_desc: "Elcan İnşaat — Architectural, construction and interior design company. Baku, Azerbaijan."
+    meta_desc: "Elcan İnşaat — Architectural, construction and interior design company. Baku, Azerbaijan.",
+    nav_calculator: "Calculator",
+    nav_warranty: "Warranty",
+    nav_faq: "FAQ",
+    nav_blog: "Blog & Articles",
+    nav_locations: "Project Geography",
+    calc_badge: "Budget Planning",
+    calc_title: "Interactive Construction & Renovation Calculator",
+    calc_subtitle: "Calculate your preliminary project budget by selecting area, service type, and quality package.",
+    calc_area_label: "Object Area (sq.m)",
+    calc_service_label: "Service Type",
+    srv_turnkey_title: "Turnkey Construction",
+    srv_renovation_title: "Full Renovation",
+    srv_arch_title: "Architecture & Planning",
+    srv_interior_title: "Interior Design",
+    calc_package_label: "Materials & Workmanship Package",
+    pkg_standard: "Standard",
+    pkg_premium: "Premium",
+    pkg_luxury: "Luxury (VIP)",
+    calc_est_total: "Estimated Project Cost",
+    calc_est_time: "Estimated Timeline:",
+    calc_feat1: "Official contract and warranty",
+    calc_feat2: "100% material quality control",
+    calc_feat3: "Step-by-step video & photo reporting",
+    calc_btn_order: "Order with this Estimate",
+    calc_btn_wa: "Send via WhatsApp",
+    locations_badge: "Our Activity Geography",
+    locations_title: "Our Projects Across Azerbaijan",
+    locations_subtitle: "Along with Baku, we construct private villas and commercial properties in regions.",
+    city_baku: "Baku & Absheron",
+    city_baku_stats: "85+ Completed Projects",
+    city_ganja: "Ganja",
+    city_ganja_stats: "22+ Completed Projects",
+    city_sheki: "Sheki & Gabala",
+    city_sheki_stats: "18+ Completed Projects",
+    city_sumqayit: "Sumqayit",
+    city_sumqayit_stats: "15+ Completed Projects",
+    warranty_badge: "Safety & Reliability",
+    warranty_title: "Official Licenses & Warranty Obligations",
+    warranty_subtitle: "All construction works comply with state licensing and international standards.",
+    war1_title: "25 Years Monolith Warranty",
+    war1_desc: "Reinforced concrete monolithic structures receive a 25-year official earthquake and structural stability guarantee.",
+    war2_title: "State Construction License",
+    war2_desc: "Official licensing from State Committee for Urban Planning to construct 1st category buildings.",
+    war3_title: "5 Years Facade & Renovation Warranty",
+    war3_desc: "Full 5-year technical warranty on facade cladding, insulation, and MEP systems.",
+    faq_badge: "Questions & Answers",
+    faq_title: "Frequently Asked Questions",
+    faq_subtitle: "Answers to the most common questions regarding construction and architecture.",
+    faq_q1: "Do you assist in obtaining construction permits?",
+    faq_a1: "Yes, we manage the complete permit process from architectural drafting to official state committee approvals.",
+    faq_q2: "How are payment stages structured during construction?",
+    faq_a2: "Payments are divided into milestone stages: foundation, monolithic framing, facade, and final interior handover.",
+    faq_q3: "How is construction material quality inspected?",
+    faq_a3: "We strictly utilize certified materials (Knauf, Mapei, Sika, BASF, Reynaers). Concrete strength is laboratory tested.",
+    faq_q4: "How long does a 3D visualization and design project take?",
+    faq_a4: "Preliminary conceptual plans take 7-10 days, while photorealistic 3D renders take 15-25 business days.",
+    faq_q5: "What are the terms of official contracts and warranties?",
+    faq_a5: "A legally binding contract with detailed itemized estimates is signed: 25 years for structural, 5 years for finishes.",
+    blog_badge: "Blog & Insights",
+    blog_title: "Architectural & Construction Insights",
+    blog_subtitle: "Expert articles on home building, interior design, and material selection.",
+    blog_tag_construct: "Construction",
+    blog_tag_arch: "Architecture",
+    blog_tag_manage: "Management",
+    btn_read_more: "Read more",
+    blog1_title: "Choosing the Right Foundation and Monolith for Modern Villas",
+    blog1_desc: "The importance of geological survey and nuances of slab vs strip foundations for different soil types.",
+    blog2_title: "2025 Architectural and Premium Facade Trends",
+    blog2_desc: "The synergy of natural travertine stone, panoramic glazing, and energy-efficient ventilated facade systems.",
+    blog3_title: "Ways to Optimize Your Budget in Turnkey Construction",
+    blog3_desc: "How proper architectural planning can reduce overall project expenditures by up to 20% without sacrificing quality.",
+    mob_lang_label: "Choose Language:",
+    mob_theme_label: "Dark Mode",
+    mob_theme_dark: "Dark",
+    mob_theme_light: "Light",
+    mob_theme_action: "Switch"
   }
 };
 
@@ -417,6 +695,14 @@ function translatePage(lang) {
       el.setAttribute('placeholder', dict[key]);
     }
   });
+
+  if (typeof window.updatePortfolioBtnText === 'function') {
+    window.updatePortfolioBtnText();
+  }
+
+  if (typeof window.updateThemeBadgeText === 'function') {
+    window.updateThemeBadgeText();
+  }
 }
 
 // Language Click Listeners
@@ -490,6 +776,10 @@ function translatePage(lang) {
     a.addEventListener('click', () => toggleMenu(false));
   });
 
+  $$('.mob-acc-body a', overlay).forEach(a => {
+    a.addEventListener('click', () => toggleMenu(false));
+  });
+
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && open) toggleMenu(false);
   });
@@ -550,48 +840,90 @@ function translatePage(lang) {
 })();
 
 /* ════════════════════════════════════════════════
-   PORTFOLIO FILTER
+   PORTFOLIO FILTER & EXPANSION CONTROLLER
    ════════════════════════════════════════════════ */
 (function () {
-  const tabs  = $$('.tab');
-  const cards = $$('.pcard');
-  if (!tabs.length) return;
+  const tabs = $$('.tab');
+  const grid = $('#portfolioGrid');
+  const viewAllBtn = $('#viewAllProjectsBtn');
+  if (!tabs.length || !grid) return;
+
+  let isExpanded = false;
+
+  function updateViewAllButtonText() {
+    if (!viewAllBtn) return;
+    const btnSpan = viewAllBtn.querySelector('span');
+    const svgIcon = viewAllBtn.querySelector('svg');
+    const dict = translations[currentLang] || translations.az;
+
+    if (btnSpan) {
+      btnSpan.textContent = isExpanded 
+        ? (dict.btn_show_less || 'Daha az göstər') 
+        : (dict.btn_all_projects_view || 'Bütün layihələrə bax');
+    }
+    if (svgIcon) {
+      svgIcon.style.transition = 'transform 0.3s ease';
+      svgIcon.style.transform = isExpanded ? 'rotate(180deg)' : 'none';
+    }
+  }
+
+  function filterCards(activeFilter) {
+    const cards = $$('.pcard', grid);
+    cards.forEach(card => {
+      const match = activeFilter === 'all' || card.dataset.cat === activeFilter;
+      card.classList.toggle('hidden', !match);
+      if (match && (!card.classList.contains('pcard-extra') || isExpanded)) {
+        card.style.animation = 'none';
+        requestAnimationFrame(() => {
+          card.style.animation = 'fadeUp .4s ease forwards';
+        });
+      }
+    });
+  }
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       const filter = tab.dataset.filter;
-      cards.forEach(card => {
-        const match = filter === 'all' || card.dataset.cat === filter;
-        card.classList.toggle('hidden', !match);
-        if (match) {
-          card.style.animation = 'none';
-          requestAnimationFrame(() => {
-            card.style.animation = 'fadeUp .4s ease forwards';
-          });
-        }
-      });
+      filterCards(filter);
     });
   });
 
-  // Handle "Bütün layihələrə bax" button click to reset filter to 'all'
-  const viewAllBtn = $('#viewAllProjectsBtn');
+  // Handle "Bütün layihələrə bax" / "Daha az göstər" click
   if (viewAllBtn) {
     viewAllBtn.addEventListener('click', e => {
       e.preventDefault();
-      // Click the "Hamısı" tab
-      const allTab = $('.tab[data-filter="all"]');
-      if (allTab) allTab.click();
-      
-      // Scroll to portfolio section
-      const target = $('#portfolio');
-      if (target) {
-        const top = target.getBoundingClientRect().top + window.scrollY - 72;
-        window.scrollTo({ top, behavior: 'smooth' });
+      isExpanded = !isExpanded;
+
+      grid.classList.toggle('expanded', isExpanded);
+      updateViewAllButtonText();
+
+      const activeTab = $('.tab.active') || $('.tab[data-filter="all"]');
+      const activeFilter = activeTab ? activeTab.dataset.filter : 'all';
+      filterCards(activeFilter);
+
+      if (isExpanded) {
+        // Smoothly scroll down so newly revealed extra projects enter viewport
+        const extraCards = $$('.pcard-extra:not(.hidden)', grid);
+        if (extraCards.length > 0) {
+          const firstExtra = extraCards[0];
+          const top = firstExtra.getBoundingClientRect().top + window.scrollY - 100;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      } else {
+        // Scroll back to top of portfolio section
+        const target = $('#portfolio');
+        if (target) {
+          const top = target.getBoundingClientRect().top + window.scrollY - 72;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
       }
     });
   }
+
+  // Hook into translatePage to keep button label translated on language switch
+  window.updatePortfolioBtnText = updateViewAllButtonText;
 })();
 
 /* ════════════════════════════════════════════════
@@ -695,7 +1027,9 @@ function animateCount(el, target, duration = 1600) {
 $$('a[href^="#"]').forEach(a => {
   if (a.hasAttribute('data-filter-trigger') || a.id === 'viewAllProjectsBtn') return; // handled separately
   a.addEventListener('click', e => {
-    const target = $(a.getAttribute('href'));
+    const href = a.getAttribute('href');
+    if (href === '#') return;
+    const target = $(href);
     if (!target) return;
     e.preventDefault();
     const top = target.getBoundingClientRect().top + window.scrollY - 72;
@@ -801,6 +1135,84 @@ const projectData = {
       ru: "Бизнес-центр Tower Office выделяется в деловом центре Баку современным дизайном, стеклянным фасадом и энергосберегающими системами управления. Здание построено с высокой сейсмостойкостью и международными стандартами вентиляции.",
       en: "The Tower Office business center stands out in Baku's commercial hub with its modern exterior design, premium glass facade, and energy-efficient building management systems. It is constructed to meet top-tier seismic resistance standards."
     }
+  },
+  baku_bay: {
+    title: "Baku Bay Residence",
+    catKey: "nav_arch",
+    img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1000&q=90",
+    loc: { az: "Ağ Şəhər, Bakı", ru: "Белый Город, Баку", en: "White City, Baku" },
+    year: "2024",
+    cat: "arch",
+    desc: {
+      az: "Ağ Şəhər ərazisində inşa edilmiş bu müasir rezidensiya dənizə açılan geniş terrasları, aerodinamik memarlıq xətləri və ekoloji təmiz izolyasiya sistemləri ilə seçilir. Layihədə panoramik pəncərələr və təbii fasad daşları harmonik şəkildə birləşdirilmişdir.",
+      ru: "Эта современная резиденция в Белом Городе выделяется просторными террасами с видом на море, аэродинамическими линиями и экологичной изоляцией. В проекте гармонично сочетаются панорамные окна и натуральный камень.",
+      en: "Built in White City, this modern residence features expansive terraces with sea views, aerodynamic architectural lines, and eco-friendly insulation systems. Panoramic glazing and natural facade stone merge seamlessly in this development."
+    }
+  },
+  skyline_loft: {
+    title: "Skyline Loft",
+    catKey: "nav_interior",
+    img: "https://images.unsplash.com/photo-1502005229762-ee1b2da97ba4?w=1000&q=90",
+    loc: { az: "Port Baku, Bakı", ru: "Port Baku, Баку", en: "Port Baku, Baku" },
+    year: "2024",
+    cat: "interior",
+    desc: {
+      az: "Port Baku kompleksində yerləşən bu loft layihəsi sənaye estetikası ilə yüksək komfortu birləşdirir. Açıq tavan konstruksiyaları, qara metal vurğuları və premium dəri mebellər unikal bir şəhər mühiti formalaşdırır.",
+      ru: "Этот лофт в комплексе Port Baku сочетает индустриальную эстетику с высоким комфортом. Открытые потолочные конструкции, акценты из черного металла и кожаная мебель создают уникальную городскую атмосферу.",
+      en: "Located in Port Baku, this loft design unites industrial aesthetics with utmost comfort. Open ceiling elements, black metal accents, and premium leather furnishing compose a distinctive metropolitan living space."
+    }
+  },
+  caspian_villa: {
+    title: "Caspian Panorama Villa",
+    catKey: "nav_arch",
+    img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1000&q=90",
+    loc: { az: "Mərdəkan, Bakı", ru: "Мардакян, Баку", en: "Mardakan, Baku" },
+    year: "2024",
+    cat: "arch",
+    desc: {
+      az: "Mərdəkanda inşa edilmiş bu fərdi villa geniş həyətyanı sahəsi, kaskad tipli açıq hovuzu və müasir istirahət zonaları ilə unikal istirahət şəraiti yaradır. Bütün bina seysmik dayanıqlı monolit karkas əsasında ucaldılmışdır.",
+      ru: "Эта вилла в Мардакяне с большим двором, каскадным бассейном и современными зонами отдыха создает непревзойденные условия для комфортной жизни. Здание возведено на основе сейсмостойкого монолита.",
+      en: "Constructed in Mardakan, this private villa features an expansive garden, cascading outdoor pool, and contemporary relaxation decks. The entire structure is erected on earthquake-resistant reinforced monolithic frames."
+    }
+  },
+  sea_breeze: {
+    title: "Sea Breeze Penthouse",
+    catKey: "nav_interior",
+    img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1000&q=90",
+    loc: { az: "Nardaran, Bakı", ru: "Нардаран, Баку", en: "Nardaran, Baku" },
+    year: "2023",
+    cat: "interior",
+    desc: {
+      az: "Xəzər dənizinin sahilində yerləşən bu penthausda ağ və qum tonlarının üstünlük təşkil etdiyi Aralıq dənizi minimalizmi tətbiq olunmuşdur. Geniş günəş vannası terrası və xüsusi akustik dizayn layihənin diqqət çəkən xüsusiyyətlərindəndir.",
+      ru: "В этом пентхаусе на берегу Каспийского моря применен средиземноморский минимализм в светлых песчаных тонах. Просторная терраса и акустический комфорт являются главными достоинствами проекта.",
+      en: "Overlooking the Caspian Sea, this penthouse embodies Mediterranean minimalism in soothing sand tones. A sunbathing terrace and acoustic comfort optimization define this exclusive seaside living experience."
+    }
+  },
+  green_garden: {
+    title: "Green Garden Estate",
+    catKey: "nav_construction",
+    img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1000&q=90",
+    loc: { az: "Qəbələ, Azərbaycan", ru: "Габала, Азербайджан", en: "Gabala, Azerbaijan" },
+    year: "2023",
+    cat: "construction",
+    desc: {
+      az: "Qəbələnin dağlıq meşə zolağında inşa edilən bu eko-rezidensiya təbii ağac və yerli daş örtüklərlə ətraf mühitə tam inteqrasiya edilib. Yüksək səviyyəli istilik izolyasiyası sərt qış aylarında belə enerji xərclərini minimumda saxlayır.",
+      ru: "Эта эко-резиденция в горном лесу Габалы полностью интегрирована в окружающую природу с использованием дерева и камня. Высокоэффективная теплоизоляция минимизирует энергозатраты зимой.",
+      en: "Nestled in Gabala's mountain forests, this eco-residence integrates natural timber and local stone cladding into the terrain. Top-tier thermal insulation keeps energy demands to a minimum throughout cold winters."
+    }
+  },
+  emerald_plaza: {
+    title: "Emerald Business Plaza",
+    catKey: "nav_construction",
+    img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1000&q=90",
+    loc: { az: "Gəncə, Azərbaycan", ru: "Гянджа, Азербайджан", en: "Ganja, Azerbaijan" },
+    year: "2023",
+    cat: "construction",
+    desc: {
+      az: "Gəncə şəhərində inşa edilmiş müasir 7 mərtəbəli biznes mərkəzi ən müasir yanğın təhlükəsizliyi, sürətli liftlər və avtomatlaşdırılmış mühəndislik sistemləri ilə təmin olunmuşdur.",
+      ru: "Современный 7-этажный бизнес-центр в Гяндже оснащен передовыми системами пожарной безопасности, скоростными лифтами и автоматизированными инженерными системами.",
+      en: "This modern 7-story business plaza constructed in Ganja is equipped with cutting-edge fire suppression systems, high-speed elevators, and automated building management networks."
+    }
   }
 };
 
@@ -859,6 +1271,84 @@ const projectData = {
   });
 
   closeBtn.addEventListener('click', closeModal);
+
+  // ── LIGHTBOX GALLERY FOR DETAILS MODAL IMAGES ──
+  const lightboxOverlay = $('#lightboxOverlay');
+  const lightboxImg = $('#lightboxImg');
+  const lightboxClose = $('#lightboxClose');
+  const lightboxPrev = $('#lightboxPrev');
+  const lightboxNext = $('#lightboxNext');
+
+  let currentImages = [];
+  let currentIndex = 0;
+
+  function openLightbox(images, index) {
+    currentImages = images || [];
+    currentIndex = index || 0;
+    if (!currentImages.length) return;
+    lightboxImg.src = currentImages[currentIndex];
+    lightboxOverlay.classList.add('open');
+    lightboxOverlay.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeLightbox() {
+    lightboxOverlay.classList.remove('open');
+    lightboxOverlay.setAttribute('aria-hidden', 'true');
+  }
+
+  function showPrev() {
+    if (!currentImages.length) return;
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    lightboxImg.src = currentImages[currentIndex];
+  }
+
+  function showNext() {
+    if (!currentImages.length) return;
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    lightboxImg.src = currentImages[currentIndex];
+  }
+
+  if (mImg && lightboxOverlay) {
+    mImg.style.cursor = 'pointer';
+    mImg.addEventListener('click', () => {
+      if (activeProject && projectData[activeProject]) {
+        const proj = projectData[activeProject];
+        const images = proj.images || [proj.img];
+        const currentSrc = mImg.src;
+        let index = images.indexOf(currentSrc);
+        if (index === -1) {
+          index = images.findIndex(src => src.includes(currentSrc) || currentSrc.includes(src));
+        }
+        if (index === -1) index = 0;
+        openLightbox(images, index);
+      }
+    });
+  }
+
+  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+  if (lightboxPrev) lightboxPrev.addEventListener('click', showPrev);
+  if (lightboxNext) lightboxNext.addEventListener('click', showNext);
+
+  if (lightboxOverlay) {
+    lightboxOverlay.addEventListener('click', e => {
+      if (e.target === lightboxOverlay || e.target.classList.contains('lightbox-img-wrap')) {
+        closeLightbox();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', e => {
+    if (lightboxOverlay && lightboxOverlay.classList.contains('open')) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+        e.stopImmediatePropagation();
+      } else if (e.key === 'ArrowLeft') {
+        showPrev();
+      } else if (e.key === 'ArrowRight') {
+        showNext();
+      }
+    }
+  });
   modal.addEventListener('click', e => {
     if (e.target === modal) closeModal();
   });
@@ -1104,6 +1594,296 @@ const projectData = {
 
   successModal.addEventListener('click', e => {
     if (e.target === successModal) closeSuccess();
+  });
+})();
+
+/* ════════════════════════════════════════════════
+   INTERACTIVE COST CALCULATOR
+   ════════════════════════════════════════════════ */
+(function () {
+  const areaRange = $('#calcAreaRange');
+  const areaVal = $('#calcAreaVal');
+  const servicePills = $$('#calcServicePills .calc-pill');
+  const packagePills = $$('#calcPackagePills .calc-pill');
+  const priceDisplay = $('#calcPriceDisplay');
+  const durationDisplay = $('#calcDurationDisplay');
+  const orderBtn = $('#calcOrderBtn');
+  const waBtn = $('#calcWhatsAppBtn');
+
+  if (!areaRange || !priceDisplay) return;
+
+  let currentArea = parseInt(areaRange.value, 10) || 150;
+  let currentRate = 650;
+  let currentDuration = "4-7 ay";
+  let currentMultiplier = 1.0;
+  let currentServiceName = "Açar təslimi tikinti";
+  let currentPackageName = "Premium";
+
+  function updateCalculation() {
+    currentArea = parseInt(areaRange.value, 10);
+    areaVal.textContent = `${currentArea} m²`;
+
+    const activeService = $('#calcServicePills .calc-pill.active');
+    if (activeService) {
+      currentRate = parseFloat(activeService.dataset.rate) || 650;
+      currentDuration = activeService.dataset.duration || "3-6 ay";
+      currentServiceName = activeService.textContent.trim();
+    }
+
+    const activePkg = $('#calcPackagePills .calc-pill.active');
+    if (activePkg) {
+      currentMultiplier = parseFloat(activePkg.dataset.multiplier) || 1.0;
+      currentPackageName = activePkg.textContent.trim();
+    }
+
+    const total = Math.round(currentArea * currentRate * currentMultiplier);
+    const formattedTotal = total.toLocaleString('az-AZ');
+
+    priceDisplay.innerHTML = `${formattedTotal} <span>AZN</span>`;
+    if (durationDisplay) {
+      durationDisplay.textContent = currentDuration;
+    }
+
+    // Update WhatsApp link
+    if (waBtn) {
+      const waText = encodeURIComponent(
+        `Salam, Elcan İnşaat! Saytınızdakı kalkulyator vasitəsilə layihə hesabladım:\n` +
+        `• Xidmət: ${currentServiceName}\n` +
+        `• Sahə: ${currentArea} m²\n` +
+        `• Paket: ${currentPackageName}\n` +
+        `• Təxmini dəyər: ${formattedTotal} AZN\n` +
+        `• Müddət: ${currentDuration}\n\n` +
+        `Bu layihə ilə bağlı məsləhət almaq istərdim.`
+      );
+      waBtn.href = `https://wa.me/994703052005?text=${waText}`;
+    }
+  }
+
+  areaRange.addEventListener('input', updateCalculation);
+
+  servicePills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      servicePills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      updateCalculation();
+    });
+  });
+
+  packagePills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      packagePills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      updateCalculation();
+    });
+  });
+
+  // Transfer calculation directly to contact form
+  if (orderBtn) {
+    orderBtn.addEventListener('click', () => {
+      const total = Math.round(currentArea * currentRate * currentMultiplier).toLocaleString('az-AZ');
+      const contactSection = $('#contact');
+      const msgField = $('#fmsg');
+      const typeSelect = $('#ftype');
+      const nameField = $('#fname');
+
+      if (typeSelect) {
+        const activeService = $('#calcServicePills .calc-pill.active');
+        const sType = activeService ? activeService.dataset.service : '';
+        if (sType === 'turnkey') typeSelect.value = "Xüsusi Ev / Villa";
+        else if (sType === 'interior') typeSelect.value = "Yalnız İnteryer Dizaynı";
+        else if (sType === 'arch') typeSelect.value = "Kommersiya Binası";
+      }
+
+      if (msgField) {
+        msgField.value = `[Kalkulyator Hesablaması]: ${currentServiceName} | Sahə: ${currentArea} m² | Paket: ${currentPackageName} | Təxmini büdcə: ${total} AZN (${currentDuration}). Ətraflı müzakirə etmək istəyirəm.`;
+      }
+
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+          if (nameField) nameField.focus();
+        }, 600);
+      }
+    });
+  }
+
+  // Initial calculation run
+  updateCalculation();
+})();
+
+/* ════════════════════════════════════════════════
+   FAQ ACCORDION CONTROLLER
+   ════════════════════════════════════════════════ */
+(function () {
+  const faqItems = $$('.faq-item');
+  if (!faqItems.length) return;
+
+  faqItems.forEach(item => {
+    const questionBtn = item.querySelector('.faq-question');
+    if (!questionBtn) return;
+
+    questionBtn.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      
+      // Close other accordion items
+      faqItems.forEach(other => {
+        if (other !== item) other.classList.remove('active');
+      });
+
+      // Toggle current
+      if (isActive) {
+        item.classList.remove('active');
+      } else {
+        item.classList.add('active');
+      }
+    });
+  });
+})();
+
+/* ════════════════════════════════════════════════
+   BLOG ARTICLE MODAL CONTROLLER
+   ════════════════════════════════════════════════ */
+(function () {
+  const blogModal = $('#blogModal');
+  const blogClose = $('#blogModalClose');
+  const blogCards = $$('.blog-card');
+  const modalTag = $('#blogModalTag');
+  const modalDate = $('#blogModalDate');
+  const modalTitle = $('#blogModalTitle');
+  const modalImg = $('#blogModalImg');
+  const modalContent = $('#blogModalContent');
+
+  if (!blogModal || !blogCards.length) return;
+
+  const blogArticles = {
+    foundation: {
+      az: {
+        tag: "Tikinti",
+        date: "15 Fevral 2025",
+        title: "Müasir Villalarda Düzgün Təməl və Monolit Seçimi",
+        img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1000&q=85&auto=format&fit=crop",
+        body: `<p>Müasir villa tikintisində ən həlledici və geri dönüşü olmayan mərhələ bünövrə və monolit karkas işləridir. Ərazinin hidrogeoloji xüsusiyyətləri düzgün qiymətləndirilmədikdə, gələcəkdə bünövrə çökmələri, fasadda çatlar və rütubət kimi ciddi fəsadlar meydana çıxır.</p>
+        <p style="margin-top:14px;"><strong>Geoloji qazıntı və torpaq analizi:</strong> Tikintidən öncə mütləq torpaq qatının qrunt suları səviyyəsi və daşıyıcı qabiliyyəti yoxlanılmalıdır. Bakı və Abşeron yarımadasının qumlu-əhəngdaşı torpaqlarında əsasən bütöv monolit plitə (radye təməl) ən təhlükəsiz həll hesab olunur.</p>
+        <p style="margin-top:14px;"><strong>Beton markası və armatur karkası:</strong> Minimum M300-M350 markalı hidroizolyasiya qatqılı sertifikatlı beton və A500C markalı armatur konstruksiyalar zəlzələyə 9 bal gücündə tam dayanıqlılıq zəmanəti təmin edir.</p>`
+      },
+      ru: {
+        tag: "Строительство",
+        date: "15 Февраля 2025",
+        title: "Правильный Выбор Фундамента и Монолита для Современных Вилл",
+        img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1000&q=85&auto=format&fit=crop",
+        body: `<p>При строительстве современных вилл фундамент и монолитный каркас являются наиболее ответственными этапами, от которых зависит безопасность всего строения.</p>
+        <p style="margin-top:14px;"><strong>Геологические изыскания:</strong> Перед началом работ обязательно проводится исследование грунта. Для песчано-известняковых почв Апшерона сплошная монолитная плита является самым надежным решением.</p>
+        <p style="margin-top:14px;"><strong>Качество бетона и арматуры:</strong> Использование бетона марки не ниже М350 с гидроизоляционными добавками и арматуры А500С обеспечивает сейсмостойкость до 9 баллов.</p>`
+      },
+      en: {
+        tag: "Construction",
+        date: "February 15, 2025",
+        title: "Choosing the Right Foundation and Monolith for Modern Villas",
+        img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1000&q=85&auto=format&fit=crop",
+        body: `<p>In modern villa construction, the foundation and reinforced monolithic frame are the most crucial non-reversible phases determining structural longevity.</p>
+        <p style="margin-top:14px;"><strong>Soil Investigation:</strong> Comprehensive geological analysis prevents moisture ingress and differential settlement. Monolithic raft slabs offer the optimal stability across Absheron soils.</p>
+        <p style="margin-top:14px;"><strong>High-Grade Concrete:</strong> Utilizing M350 hydro-insulated concrete and A500C rebar guarantees seismic resilience up to magnitude 9.</p>`
+      }
+    },
+    facade: {
+      az: {
+        tag: "Arxitektura",
+        date: "28 Yanvar 2025",
+        title: "2025-ci İlin Memarlıq və Premium Fasad Trendləri",
+        img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&q=85",
+        body: `<p>2025-ci ildə premium memarlıqda təbiilik, minimalizm və yüksək enerji səmərəliliyi ön plana çıxır. Ağır klassik elementlərin yerini geniş vitraj panoramik pəncərələr və təbii teksturalı ventilyasiyalı fasadlar tutur.</p>
+        <p style="margin-top:14px;"><strong>Təbii Daş və Ağac Kompozit:</strong> İran travertini, qranit və termo-ağac örtüklər fasada həm zərif estetika qatır, həm də onilliklər boyu rəngini və davamlılığını qoruyub saxlayır.</p>
+        <p style="margin-top:14px;"><strong>Reynaers Panoramik Şüşələnmə:</strong> Enerji qənaətli multi-funksional şüşə paketləri yayda istini, qışda isə soyuğu dəf edərək daxili iqlimi tənzimləyir.</p>`
+      },
+      ru: {
+        tag: "Архитектура",
+        date: "28 Января 2025",
+        title: "Архитектурные и Фасадные Тренды 2025 Года",
+        img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&q=85",
+        body: `<p>В 2025 году премиальная архитектура делает акцент на минимализм, натуральные материалы и высокую энергоэффективность.</p>
+        <p style="margin-top:14px;"><strong>Натуральный камень:</strong> Травертин, гранит и термодерево создают благородный внешний вид и служат десятилетиями.</p>
+        <p style="margin-top:14px;"><strong>Панорамное остекление:</strong> Мультифункциональные стеклопакеты Reynaers защищают от перегрева летом и сохраняют тепло зимой.</p>`
+      },
+      en: {
+        tag: "Architecture",
+        date: "January 28, 2025",
+        title: "2025 Architectural and Premium Facade Trends",
+        img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&q=85",
+        body: `<p>Contemporary luxury architecture in 2025 is dominated by minimalism, tactile natural materials, and smart energy conservation.</p>
+        <p style="margin-top:14px;"><strong>Natural Stone & Thermo-Wood:</strong> Travertine and composite cladding provide timeless elegance requiring zero maintenance.</p>
+        <p style="margin-top:14px;"><strong>Panoramic Glazing:</strong> Low-E Reynaers glass systems ensure optimal thermal insulation in all seasons.</p>`
+      }
+    },
+    budget: {
+      az: {
+        tag: "İdarəetmə",
+        date: "10 Yanvar 2025",
+        title: "Açar Təslimi Tikintidə Büdcəyə Qənaət Yolları",
+        img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1000&q=85",
+        body: `<p>Tikinti prosesində lazımsız xərclərin 80%-i layihələndirmə və planlaşdırma mərhələsində yol verilən boşluqlardan qaynaqlanır. Dəqiq smeta və peşəkar nəzarət büdcənizə 15-20% qənaət etməyə imkan verir.</p>
+        <p style="margin-top:14px;"><strong>Ətraflı İşçi Layihə (Рабочий проект):</strong> Bütün mühəndislik (elektrik, santexnika, isitmə-soyutma) xətləri əvvəlcədən 3D modelləşdirildikdə təmir vaxtı divarların yenidən dağıdılması riskləri sıfıra enir.</p>
+        <p style="margin-top:14px;"><strong>Topdan Material Tədarükü:</strong> Şirkətimizin rəsmi tərəfdaş distributor şəbəkəsi vasitəsilə tikinti materialları birbaşa zavod qiymətinə əldə edilir.</p>`
+      },
+      ru: {
+        tag: "Управление",
+        date: "10 Января 2025",
+        title: "Способы Экономии Бюджета при Строительстве под Ключ",
+        img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1000&q=85",
+        body: `<p>Более 80% непредвиденных расходов возникают из-за отсутствия детального проекта и сметы.</p>
+        <p style="margin-top:14px;"><strong>Рабочий проект:</strong> Точное 3D проектирование всех инженерных сетей исключает переделки в ходе строительства.</p>
+        <p style="margin-top:14px;"><strong>Прямые поставки:</strong> Мы закупаем строительные материалы напрямую у производителей по оптовым ценам.</p>`
+      },
+      en: {
+        tag: "Management",
+        date: "January 10, 2025",
+        title: "Ways to Optimize Your Budget in Turnkey Construction",
+        img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1000&q=85",
+        body: `<p>Most budget overruns stem from incomplete engineering documentation and ad-hoc changes during construction.</p>
+        <p style="margin-top:14px;"><strong>Comprehensive Working Drawings:</strong> 3D BIM coordination of all MEP systems prevents costly on-site demolition and alterations.</p>
+        <p style="margin-top:14px;"><strong>Direct Manufacturer Procurement:</strong> Our contractor wholesale agreements save up to 20% on premium building materials.</p>`
+      }
+    }
+  };
+
+  function openBlogModal(articleId) {
+    const data = blogArticles[articleId];
+    if (!data) return;
+
+    const langData = data[currentLang] || data.az;
+    modalTag.textContent = langData.tag;
+    modalDate.textContent = langData.date;
+    modalTitle.textContent = langData.title;
+    modalImg.src = langData.img;
+    modalContent.innerHTML = langData.body;
+
+    blogModal.classList.add('open');
+    blogModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeBlogModal() {
+    blogModal.classList.remove('open');
+    blogModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  blogCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const articleId = card.dataset.blogId;
+      openBlogModal(articleId);
+    });
+  });
+
+  if (blogClose) blogClose.addEventListener('click', closeBlogModal);
+
+  blogModal.addEventListener('click', e => {
+    if (e.target === blogModal) closeBlogModal();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && blogModal.classList.contains('open')) {
+      closeBlogModal();
+    }
   });
 })();
 

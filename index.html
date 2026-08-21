@@ -9,6 +9,31 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "name": "Elcan İnşaat",
+    "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&q=90",
+    "telephone": "+994703052005",
+    "email": "elcancbrayilli2@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bakı",
+      "addressCountry": "AZ"
+    },
+    "priceRange": "$$$",
+    "openingHours": "Mo-Sa 09:00-19:00"
+  }
+  </script>
+  <script>
+    (function () {
+      const stored = localStorage.getItem('theme');
+      if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark-theme');
+      }
+    })();
+  </script>
 </head>
 <body>
 
@@ -73,7 +98,11 @@
         </div>
 
         <div class="nav-item">
-          <a href="#contact" class="nav-btn" data-translate="nav_cooperation">Əməkdaşlıq</a>
+          <a href="#calculator" class="nav-btn" data-translate="nav_calculator">Kalkulyator</a>
+        </div>
+
+        <div class="nav-item">
+          <a href="#warranty" class="nav-btn" data-translate="nav_warranty">Zəmanət</a>
         </div>
 
         <div class="nav-item has-dd">
@@ -82,10 +111,14 @@
             <svg class="chev" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="dropdown">
-            <a href="#" data-translate="nav_news">Xəbərlər</a>
-            <a href="#" data-translate="nav_photos">Foto qalereya</a>
-            <a href="#" data-translate="nav_video">Video</a>
+            <a href="#blog" data-translate="nav_blog">Bloq və Məqalələr</a>
+            <a href="#locations" data-translate="nav_locations">Layihə Coğrafiyası</a>
+            <a href="#portfolio" data-translate="nav_photos">Foto qalereya</a>
           </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="#faq" class="nav-btn" data-translate="nav_faq">FAQ</a>
         </div>
 
         <div class="nav-item">
@@ -101,6 +134,10 @@
         <a href="https://wa.me/994703052005" class="hdr-wa" target="_blank" aria-label="WhatsApp">
           <svg viewBox="0 0 20 20" fill="none"><path d="M10 1C5 1 1 5 1 10c0 1.6.4 3.2 1.2 4.6L1 19l4.6-1.2A9 9 0 1010 1z" stroke="currentColor" stroke-width="1.4"/><path d="M7 8c.4.9 1 1.8 1.8 2.6.8.8 1.7 1.4 2.6 1.8l1.2-1.2c.2-.2.4-.2.6-.1.7.3 1.5.5 2.3.5.3 0 .5.2.5.5V14c0 .3-.2.5-.5.5A8.5 8.5 0 015.5 6c0-.3.2-.5.5-.5H7.5c.3 0 .5.2.5.5 0 .8.2 1.6.5 2.3.1.2 0 .4-.1.6L7 8z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
         </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Temanı dəyiş">
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
         <div class="lang-sw">
           <button class="lang active" data-lang="az">AZ</button>
           <button class="lang" data-lang="ru">RU</button>
@@ -162,10 +199,36 @@
             <a href="#services" data-translate="nav_construction">Tikinti</a>
           </div>
         </div>
-        <a href="#contact" class="mob-link" data-translate="nav_cooperation">Əməkdaşlıq</a>
-        <a href="#" class="mob-link" data-translate="nav_media">Media</a>
-        <a href="#contact" class="mob-link" id="mobClose" data-translate="nav_contact">Əlaqə</a>
+        <a href="#calculator" class="mob-link" data-translate="nav_calculator">Kalkulyator</a>
+        <a href="#warranty" class="mob-link" data-translate="nav_warranty">Zəmanət</a>
+        <a href="#locations" class="mob-link" data-translate="nav_locations">Layihə Coğrafiyası</a>
+        <a href="#faq" class="mob-link" data-translate="nav_faq">FAQ</a>
+        <a href="#blog" class="mob-link" data-translate="nav_blog">Bloq və Məqalələr</a>
+        <a href="#contact" class="mob-link" data-translate="nav_contact">Əlaqə</a>
       </nav>
+
+      <div class="mob-controls-panel">
+        <div class="mob-control-group">
+          <span class="mob-control-label" data-translate="mob_lang_label">Dil seçimi / Language:</span>
+          <div class="lang-sw" style="display:flex">
+            <button class="lang active" data-lang="az">AZ</button>
+            <button class="lang" data-lang="ru">RU</button>
+            <button class="lang" data-lang="en">EN</button>
+          </div>
+        </div>
+
+        <div class="mob-control-group" style="margin-top:14px;">
+          <button class="mob-theme-btn theme-toggle" aria-label="Qaranlıq rejimi dəyiş">
+            <div class="mob-theme-left">
+              <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></svg>
+              <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+              <span data-translate="mob_theme_label">Qaranlıq Rejim</span>
+            </div>
+            <span class="mob-theme-badge" data-translate="mob_theme_action">Dəyiş</span>
+          </button>
+        </div>
+      </div>
+
       <div class="mob-footer">
         <a href="tel:+994703052005">+994 70 305 20 05</a>
         <a href="mailto:elcancbrayilli2@gmail.com">elcancbrayilli2@gmail.com</a>
@@ -317,6 +380,94 @@
     </div>
   </section>
 
+  <!-- ══ CALCULATOR ═════════════════════════════════ -->
+  <section class="calc-section" id="calculator">
+    <div class="container">
+      <div class="section-top center">
+        <div>
+          <p class="label" data-translate="calc_badge">Büdcə Planlaşdırması</p>
+          <h2 class="section-title" data-translate="calc_title">İnteraktiv Tikinti & Təmir Kalkulyatoru</h2>
+          <p style="color:var(--muted);max-width:620px;margin:8px auto 0;font-size:15px;" data-translate="calc_subtitle">Sahəni, xidmət növünü və paketi seçərək layihənizin ilkin büdcəsini dərhal hesablayın.</p>
+        </div>
+      </div>
+
+      <div class="calc-card">
+        <div class="calc-grid">
+          <div class="calc-inputs">
+            
+            <!-- Area Slider -->
+            <div class="calc-group">
+              <div class="calc-label">
+                <span data-translate="calc_area_label">Obyektin sahəsi (m²)</span>
+                <span class="calc-val-badge" id="calcAreaVal">150 m²</span>
+              </div>
+              <input type="range" class="calc-range" id="calcAreaRange" min="20" max="1000" step="5" value="150">
+              <div class="calc-range-marks">
+                <span>20 m²</span>
+                <span>250 m²</span>
+                <span>500 m²</span>
+                <span>750 m²</span>
+                <span>1000 m²</span>
+              </div>
+            </div>
+
+            <!-- Service Type Selection -->
+            <div class="calc-group">
+              <div class="calc-label">
+                <span data-translate="calc_service_label">Xidmət növü</span>
+              </div>
+              <div class="calc-pills" id="calcServicePills">
+                <button type="button" class="calc-pill active" data-service="turnkey" data-rate="650" data-duration="4-7 ay" data-translate="srv_turnkey_title">Açar təslimi tikinti</button>
+                <button type="button" class="calc-pill" data-service="renovation" data-rate="320" data-duration="2-4 ay" data-translate="srv_renovation_title">Əsaslı təmir</button>
+                <button type="button" class="calc-pill" data-service="arch" data-rate="45" data-duration="1-2 ay" data-translate="srv_arch_title">Memarlıq & Layihə</button>
+                <button type="button" class="calc-pill" data-service="interior" data-rate="35" data-duration="1 ay" data-translate="srv_interior_title">İnteryer dizayn</button>
+              </div>
+            </div>
+
+            <!-- Quality Package -->
+            <div class="calc-group" style="margin-bottom: 0;">
+              <div class="calc-label">
+                <span data-translate="calc_package_label">Material və İşçilik Paketi</span>
+              </div>
+              <div class="calc-pills calc-pill-3" id="calcPackagePills">
+                <button type="button" class="calc-pill" data-multiplier="0.85" data-translate="pkg_standard">Standart</button>
+                <button type="button" class="calc-pill active" data-multiplier="1.0" data-translate="pkg_premium">Premium</button>
+                <button type="button" class="calc-pill" data-multiplier="1.35" data-translate="pkg_luxury">Lüks (VIP)</button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Result Box -->
+          <div class="calc-result-box">
+            <div>
+              <div class="calc-result-header" data-translate="calc_est_total">Təxmini Layihə Dəyəri</div>
+              <div class="calc-price" id="calcPriceDisplay">97,500 <span>AZN</span></div>
+              <div class="calc-duration">
+                <strong data-translate="calc_est_time">Təxmini icra müddəti:</strong> <span id="calcDurationDisplay">4-7 ay</span>
+              </div>
+
+              <ul class="calc-features-list">
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> <span data-translate="calc_feat1">Rəsmi müqavilə və zəmanət</span></li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> <span data-translate="calc_feat2">Materiallara 100% keyfiyyət nəzarəti</span></li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> <span data-translate="calc_feat3">Mərhələli video & foto hesabat</span></li>
+              </ul>
+            </div>
+
+            <div class="calc-btn-wrap">
+              <button type="button" class="btn-red w-full" id="calcOrderBtn" data-translate="calc_btn_order">Bu Hesablamanı Sifariş Et</button>
+              <a href="#" class="btn-outline-dark w-full" id="calcWhatsAppBtn" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1C5 1 1 5 1 10c0 1.6.4 3.2 1.2 4.6L1 19l4.6-1.2A9 9 0 1010 1z"/><path d="M7 8c.4.9 1 1.8 1.8 2.6.8.8 1.7 1.4 2.6 1.8l1.2-1.2c.2-.2.4-.2.6-.1.7.3 1.5.5 2.3.5.3 0 .5.2.5.5V14c0 .3-.2.5-.5.5A8.5 8.5 0 015.5 6c0-.3.2-.5.5-.5H7.5c.3 0 .5.2.5.5 0 .8.2 1.6.5 2.3.1.2 0 .4-.1.6L7 8z" fill="#fff"/></svg>
+                <span data-translate="calc_btn_wa">WhatsApp ilə göndər</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ══ PORTFOLIO ════════════════════════════════ -->
   <section class="portfolio" id="portfolio">
     <div class="container">
@@ -419,6 +570,91 @@
           </div>
         </a>
 
+        <!-- Extra projects revealed on "Bütün layihələrə bax" -->
+        <a href="#" class="pcard pcard-extra" data-cat="arch" data-project-id="baku_bay">
+          <div class="pcard-img">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=700&q=80&auto=format&fit=crop" alt="Baku Bay Residence" loading="lazy">
+            <div class="pcard-overlay">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat" data-translate="nav_arch">Arxitektura</span>
+            <h3>Baku Bay Residence</h3>
+            <p data-translate="project_baku_bay_info">Lüks Rezidensiya · Ağ Şəhər, Bakı · 2024</p>
+          </div>
+        </a>
+
+        <a href="#" class="pcard pcard-extra" data-cat="interior" data-project-id="skyline_loft">
+          <div class="pcard-img">
+            <img src="https://images.unsplash.com/photo-1502005229762-ee1b2da97ba4?w=700&q=80&auto=format&fit=crop" alt="Skyline Loft" loading="lazy">
+            <div class="pcard-overlay">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat" data-translate="nav_interior">İnteryer</span>
+            <h3>Skyline Loft</h3>
+            <p data-translate="project_skyline_loft_info">Müasir Loft · Port Baku · 2024</p>
+          </div>
+        </a>
+
+        <a href="#" class="pcard pcard-extra" data-cat="arch" data-project-id="caspian_villa">
+          <div class="pcard-img">
+            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=700&q=80&auto=format&fit=crop" alt="Caspian Panorama Villa" loading="lazy">
+            <div class="pcard-overlay">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat" data-translate="nav_arch">Arxitektura</span>
+            <h3>Caspian Panorama Villa</h3>
+            <p data-translate="project_caspian_panorama_info">Fərdi Villa & Hovuz · Mərdəkan · 2024</p>
+          </div>
+        </a>
+
+        <a href="#" class="pcard pcard-extra" data-cat="interior" data-project-id="sea_breeze">
+          <div class="pcard-img">
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=700&q=80&auto=format&fit=crop" alt="Sea Breeze Penthouse" loading="lazy">
+            <div class="pcard-overlay">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat" data-translate="nav_interior">İnteryer</span>
+            <h3>Sea Breeze Penthouse</h3>
+            <p data-translate="project_sea_breeze_info">Dəniz Kənarı Penthaus · Nardaran · 2023</p>
+          </div>
+        </a>
+
+        <a href="#" class="pcard pcard-extra" data-cat="construction" data-project-id="green_garden">
+          <div class="pcard-img">
+            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=700&q=80&auto=format&fit=crop" alt="Green Garden Estate" loading="lazy">
+            <div class="pcard-overlay">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat" data-translate="nav_construction">Tikinti</span>
+            <h3>Green Garden Estate</h3>
+            <p data-translate="project_green_garden_info">Eko-Rezidensiya · Qəbələ · 2023</p>
+          </div>
+        </a>
+
+        <a href="#" class="pcard pcard-extra" data-cat="construction" data-project-id="emerald_plaza">
+          <div class="pcard-img">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=700&q=80&auto=format&fit=crop" alt="Emerald Business Plaza" loading="lazy">
+            <div class="pcard-overlay">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat" data-translate="nav_construction">Tikinti</span>
+            <h3>Emerald Business Plaza</h3>
+            <p data-translate="project_emerald_plaza_info">Biznes & Ofis Mərkəzi · Gəncə · 2023</p>
+          </div>
+        </a>
+
       </div>
 
       <div class="portfolio-more">
@@ -446,6 +682,53 @@
         <div class="nitem">
           <span class="nval"><span class="nc" data-count="8">0</span></span>
           <span class="nlabel" data-translate="num_cities">Xidmət göstərilən şəhərlər</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ LOCATIONS / GEOGRAPHY ═════════════════════ -->
+  <section class="locations-section" id="locations">
+    <div class="container">
+      <div class="section-top center">
+        <div>
+          <p class="label" data-translate="locations_badge">Fəaliyyət Coğrafiyamız</p>
+          <h2 class="section-title" data-translate="locations_title">Azərbaycanın Müxtəlif Şəhərlərində Layihələrimiz</h2>
+          <p style="color:var(--muted);max-width:620px;margin:8px auto 0;font-size:15px;" data-translate="locations_subtitle">Paytaxt Bakı ilə yanaşı, regionlarda da fərdi villalar, kommersiya və turizm obyektləri inşa edirik.</p>
+        </div>
+      </div>
+
+      <div class="locations-grid">
+        <div class="loc-card">
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" alt="Bakı" loading="lazy">
+          <div class="loc-overlay">
+            <h3 data-translate="city_baku">Bakı & Abşeron</h3>
+            <span data-translate="city_baku_stats">85+ Tamamlanmış Layihə</span>
+          </div>
+        </div>
+
+        <div class="loc-card">
+          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80" alt="Gəncə" loading="lazy">
+          <div class="loc-overlay">
+            <h3 data-translate="city_ganja">Gəncə</h3>
+            <span data-translate="city_ganja_stats">22+ Tamamlanmış Layihə</span>
+          </div>
+        </div>
+
+        <div class="loc-card">
+          <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80" alt="Şəki" loading="lazy">
+          <div class="loc-overlay">
+            <h3 data-translate="city_sheki">Şəki & Qəbələ</h3>
+            <span data-translate="city_sheki_stats">18+ Tamamlanmış Layihə</span>
+          </div>
+        </div>
+
+        <div class="loc-card">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Sumqayıt" loading="lazy">
+          <div class="loc-overlay">
+            <h3 data-translate="city_sumqayit">Sumqayıt</h3>
+            <span data-translate="city_sumqayit_stats">15+ Tamamlanmış Layihə</span>
+          </div>
         </div>
       </div>
     </div>
@@ -497,6 +780,45 @@
     </div>
   </section>
 
+  <!-- ══ WARRANTY & LICENSES ═══════════════════════ -->
+  <section class="warranty-section" id="warranty">
+    <div class="container">
+      <div class="section-top center">
+        <div>
+          <p class="label" data-translate="warranty_badge">Təhlükəsizlik və Etibarlılıq</p>
+          <h2 class="section-title" data-translate="warranty_title">Rəsmi Lisenziyalar və Zəmanət Öhdəliklərimiz</h2>
+          <p style="color:var(--muted);max-width:620px;margin:8px auto 0;font-size:15px;" data-translate="warranty_subtitle">Bütün inşaat işlərimiz dövlət lisenziyası və beynəlxalq standartlara tam uyğun olaraq həyata keçirilir.</p>
+        </div>
+      </div>
+
+      <div class="warranty-grid">
+        <div class="warranty-card">
+          <div class="warranty-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 data-translate="war1_title">25 İllik Monolit Zəmanəti</h3>
+          <p data-translate="war1_desc">Dəmir-beton və karkas monolit konstruksiyalara rəsmi müqavilə əsasında 25 illik zəlzələ və çökməyə qarşı davamlılıq zəmanəti verilir.</p>
+        </div>
+
+        <div class="warranty-card">
+          <div class="warranty-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3 data-translate="war2_title">Dövlət Tikinti Lisenziyası</h3>
+          <p data-translate="war2_desc">Fövqəladə Hallar Nazirliyi və Dövlət Şəhərsalma Komitəsinin rəsmi lisenziyaları əsasında 1-ci dərəcəli məsuliyyətli binaların inşası hüququ.</p>
+        </div>
+
+        <div class="warranty-card">
+          <div class="warranty-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h3 data-translate="war3_title">5 İllik Fasad & Təmir Zəmanəti</h3>
+          <p data-translate="war3_desc">İstifadə olunan fasad örtüklərinə, izolyasiya sistemlərinə və daxili mühəndislik-kommunikasiya xətlərinə tam 5 illik texniki servis zəmanəti.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ══ TESTIMONIAL ═══════════════════════════════ -->
   <section class="testimonial">
     <div class="container">
@@ -513,6 +835,131 @@
           </cite>
           <a href="#" id="showAllReviewsBtn" class="link-more" style="margin-top:24px;display:inline-flex"><span data-translate="testi_all_reviews">Bütün rəylər</span> <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FAQ ACCORDION ═════════════════════════════ -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-top center">
+        <div>
+          <p class="label" data-translate="faq_badge">Suallar və Cavablar</p>
+          <h2 class="section-title" data-translate="faq_title">Tez-tez Verilən Suallar</h2>
+          <p style="color:var(--muted);max-width:620px;margin:8px auto 0;font-size:15px;" data-translate="faq_subtitle">Tikinti və memarlıq xidmətlərimizlə bağlı müştərilərimizin ən çox maraqlandığı sualların cavabları.</p>
+        </div>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item active">
+          <button class="faq-question">
+            <span data-translate="faq_q1">Tikintiyə icazə sənədlərinin alınmasında köməklik göstərirsinizmi?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-translate="faq_a1">Bəli, memarlıq layihəsinin hazırlanmasından tutmuş, Dövlət Şəhərsalma və Arxitektura Komitəsindən və müvafiq icra hakimiyyəti orqanlarından tikintiyə icazənin (çıxarış/sərəncam) rəsmi qaydada alınmasına qədər bütün sənədləşmə prosesini həyata keçiririk.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-translate="faq_q2">Tikinti zamanı ödəniş mərhələləri necə bölünür?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-translate="faq_a2">Ödənişlər birbaşa iş qrafikinə uyğun olaraq mərhələlərə bölünür: İlkin ödəniş (təməl işləri), monolit karkasın tamamlanması, hörgü və fasad, və yekun daxili təmir təhvili. Hər mərhələ video və foto aktla təsdiqləndikdən sonra növbəti mərhələnin ödənişi edilir.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-translate="faq_q3">Tikinti materiallarının keyfiyyətinə necə nəzarət olunur?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-translate="faq_a3">İnşaat prosesində yalnız beynəlxalq və dövlət standartlarına (AZS/İSO) uyğun sertifikatlaşdırılmış brendlərin (Knauf, Mapei, Sika, BASF, Reynaers) materiallarından istifadə olunur. Betonun möhkəmliyi hər tökümdə laboratoriya testindən keçirilir.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-translate="faq_q4">Eskiz və 3D vizualizasiya layihəsi nə qədər vaxta hazırlanır?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-translate="faq_a4">Obyektin ölçüsündən asılı olaraq ilkin memarlıq konsepti və planlaşdırma 7-10 iş günü, fotorealistik 3D eksteryer və interyer vizualizasiyaları isə 15-25 iş günü ərzində tam hazır şəkildə təqdim olunur.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-translate="faq_q5">Müqavilə və rəsmi zəmanət şərtləri necədir?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-translate="faq_a5">İşlərə başlamazdan əvvəl tərəflər arasında hüquqi qüvvəyə malik rəsmi müqavilə və smeta təsdiq olunur. Konstruktiv hissəyə 25 il, təmir-bəzək və mühəndislik sistemlərinə isə 5 il rəsmi yazılı zəmanət verilir.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ BLOG & INSIGHTS ═══════════════════════════ -->
+  <section class="blog-section" id="blog">
+    <div class="container">
+      <div class="section-top center">
+        <div>
+          <p class="label" data-translate="blog_badge">Bloq & Faydalı Məqalələr</p>
+          <h2 class="section-title" data-translate="blog_title">Memarlıq və İnşaat Məsləhətləri</h2>
+          <p style="color:var(--muted);max-width:620px;margin:8px auto 0;font-size:15px;" data-translate="blog_subtitle">Ev tikintisi, interyer dizaynı və düzgün material seçimi haqqında ekspert yazıları.</p>
+        </div>
+      </div>
+
+      <div class="blog-grid">
+        <article class="blog-card" data-blog-id="foundation">
+          <div class="blog-img-wrap">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=85&auto=format&fit=crop" alt="Villa Təməli" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?w=800&q=85&auto=format&fit=crop';">
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta">
+              <span class="blog-tag" data-translate="blog_tag_construct">Tikinti</span>
+              <span>15 Fevral 2025</span>
+            </div>
+            <h3 data-translate="blog1_title">Müasir Villalarda Düzgün Təməl və Monolit Seçimi</h3>
+            <p data-translate="blog1_desc">Geoloji kəşfiyyatın əhəmiyyəti, torpaq xüsusiyyətlərinə uyğun monolit plitə və lentvari təməl seçimlərinin incəlikləri.</p>
+            <span class="blog-link"><span data-translate="btn_read_more">Davamını oxu</span> →</span>
+          </div>
+        </article>
+
+        <article class="blog-card" data-blog-id="facade">
+          <div class="blog-img-wrap">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Fasad Trendləri" loading="lazy">
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta">
+              <span class="blog-tag" data-translate="blog_tag_arch">Arxitektura</span>
+              <span>28 Yanvar 2025</span>
+            </div>
+            <h3 data-translate="blog2_title">2025-ci İlin Memarlıq və Premium Fasad Trendləri</h3>
+            <p data-translate="blog2_desc">Təbii travertin daşı, panoramik şüşələnmə və enerjiyə qənaət edən ventilyasiyalı fasad sistemlərinin harmoniyası.</p>
+            <span class="blog-link"><span data-translate="btn_read_more">Davamını oxu</span> →</span>
+          </div>
+        </article>
+
+        <article class="blog-card" data-blog-id="budget">
+          <div class="blog-img-wrap">
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&q=80" alt="Tikinti Büdcəsi" loading="lazy">
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta">
+              <span class="blog-tag" data-translate="blog_tag_manage">İdarəetmə</span>
+              <span>10 Yanvar 2025</span>
+            </div>
+            <h3 data-translate="blog3_title">Açar Təslimi Tikintidə Büdcəyə Qənaət Yolları</h3>
+            <p data-translate="blog3_desc">Keyfiyyətdən güzəştə getmədən layihə mərhələsində düzgün planlaşdırma ilə xərclərin 20%-ə qədər azaldılması yolları.</p>
+            <span class="blog-link"><span data-translate="btn_read_more">Davamını oxu</span> →</span>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -777,6 +1224,34 @@
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- Lightbox Gallery -->
+  <div class="modal-overlay modal-overlay--lightbox" id="lightboxOverlay" aria-hidden="true">
+    <button class="modal-close" id="lightboxClose" aria-label="Bağla" style="color: #fff;">×</button>
+    <button class="lightbox-nav lightbox-nav--prev" id="lightboxPrev" aria-label="Əvvəlki">‹</button>
+    <div class="lightbox-img-wrap">
+      <img src="" id="lightboxImg" alt="Lightbox project image">
+    </div>
+    <button class="lightbox-nav lightbox-nav--next" id="lightboxNext" aria-label="Növbəti">›</button>
+  </div>
+
+  <!-- Blog Article Modal -->
+  <div class="modal-overlay" id="blogModal" aria-hidden="true">
+    <div class="modal-content modal-content--medium">
+      <button class="modal-close" id="blogModalClose" aria-label="Bağla">×</button>
+      <div class="blog-modal-header" style="margin-bottom: 20px;">
+        <span class="blog-tag" id="blogModalTag">Tikinti</span>
+        <span id="blogModalDate" style="font-size: 13px; color: var(--muted); margin-left: 10px;">15 Fevral 2025</span>
+        <h2 id="blogModalTitle" style="font-size: 22px; font-weight: 800; color: var(--dark); margin-top: 12px; line-height: 1.3;">Məqalə Başlığı</h2>
+      </div>
+      <div style="border-radius: var(--r); overflow: hidden; margin-bottom: 20px; aspect-ratio: 16/9;">
+        <img src="" id="blogModalImg" alt="Article image" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <div id="blogModalContent" style="font-size: 14.5px; color: var(--dark); line-height: 1.8;">
+        <!-- Article text dynamically populated -->
+      </div>
     </div>
   </div>
 
